@@ -1,0 +1,18 @@
+{
+  "name": "typescriptHerhalingOpdracht",
+  "version": "1.0.0",
+  "description": "",
+  "main": "boluscalculation.js",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
