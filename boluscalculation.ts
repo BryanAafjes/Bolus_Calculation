@@ -32,7 +32,7 @@ class CalculateBolus {
 }
 
 //for testing
-//module.exports = CalculateBolus;
+module.exports = CalculateBolus;
 
 //event listener
 window.addEventListener('load', function(){

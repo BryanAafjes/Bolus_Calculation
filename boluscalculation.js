@@ -32,7 +32,7 @@ var CalculateBolus = /** @class */ (function () {
     return CalculateBolus;
 }());
 //for testing
-//module.exports = CalculateBolus;
+module.exports = CalculateBolus;
 //event listener
 window.addEventListener('load', function () {
     var buttonWeight = document.getElementById("buttonWeight");
