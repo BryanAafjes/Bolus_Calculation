@@ -1,4 +1,4 @@
-CalculateBolus = require('./boluscalculation.js');
+let CalculateBolus = require('./boluscalculation.js');
 
 //tests for Daily Dose Function
 test('properly calculate daily dose from weight', () => {
