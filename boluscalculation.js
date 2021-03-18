@@ -2,6 +2,7 @@ var CalculateBolus = /** @class */ (function () {
     function CalculateBolus() {
     }
     CalculateBolus.calculateDailyDose = function (weight) {
+        //Weight in kg
         if (weight >= 1 && weight <= 430) {
             var totalDailyIntake = 0.55 * weight;
             return totalDailyIntake;
@@ -11,6 +12,7 @@ var CalculateBolus = /** @class */ (function () {
         }
     };
     CalculateBolus.calculateBasalDose = function (totalDailyIntake) {
+        //DailyIntake in Units
         if (totalDailyIntake > 0) {
             var basalDose = totalDailyIntake / 2;
             return basalDose;
@@ -19,7 +21,9 @@ var CalculateBolus = /** @class */ (function () {
             return 0;
         }
     };
-    CalculateBolus.calculateIntakeMeal = function (totalDailyIntake, mealCarbs) {
+    CalculateBolus.calculateIntakeMeal = function (
+    //DailyIntake in Units, mealCarbs in grams
+    totalDailyIntake, mealCarbs) {
         if (mealCarbs >= 1 && mealCarbs <= 300) {
             var ratio = 500 / totalDailyIntake;
             var intakeMeal = mealCarbs / ratio;
@@ -32,14 +36,16 @@ var CalculateBolus = /** @class */ (function () {
     return CalculateBolus;
 }());
 //for testing
-//module.exports = CalculateBolus;
+module.exports = CalculateBolus;
 //event listener
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
     var buttonWeight = document.getElementById("buttonWeight");
     var outputDailyDose;
     if (buttonWeight) {
-        document.getElementById("buttonWeight").addEventListener("click", function () {
-            var weight = document.getElementById("userWeight").value;
+        document
+            .getElementById("buttonWeight")
+            .addEventListener("click", function () {
+            var weight = (document.getElementById("userWeight")).value;
             if (weight.match(/^[0-9]+$/)) {
                 if (weight) {
                     outputDailyDose = Math.round(CalculateBolus.calculateDailyDose(parseFloat(weight)));
@@ -50,8 +56,10 @@ window.addEventListener('load', function () {
                     else {
                         var outputBaselDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
                         if (outputBaselDose !== 0) {
-                            document.getElementById("dailyDoseNumber").innerHTML = outputDailyDose.toString() + " Units";
-                            document.getElementById("basalDoseNumber").innerHTML = outputBaselDose.toString() + " Units";
+                            document.getElementById("dailyDoseNumber").innerHTML =
+                                outputDailyDose.toString() + " Units";
+                            document.getElementById("basalDoseNumber").innerHTML =
+                                outputBaselDose.toString() + " Units";
                         }
                     }
                 }
@@ -66,9 +74,11 @@ window.addEventListener('load', function () {
     }
     var buttonCarbs = document.getElementById("buttonWeight");
     if (buttonCarbs) {
-        document.getElementById("buttonCarbs").addEventListener("click", function () {
+        document
+            .getElementById("buttonCarbs")
+            .addEventListener("click", function () {
             if (outputDailyDose) {
-                var carbsWeight = document.getElementById("userCarbs").value;
+                var carbsWeight = (document.getElementById("userCarbs")).value;
                 if (carbsWeight.match(/^[0-9]+$/)) {
                     if (carbsWeight) {
                         var output = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(carbsWeight)));
@@ -76,7 +86,8 @@ window.addEventListener('load', function () {
                             alert("ERROR: Amount of Carbs must be between 1 and 300 grams!");
                         }
                         else {
-                            document.getElementById("carbsDoseNumber").innerHTML = output.toString() + " Units";
+                            document.getElementById("carbsDoseNumber").innerHTML =
+                                output.toString() + " Units";
                         }
                     }
                     else {
