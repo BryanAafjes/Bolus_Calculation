@@ -1,7 +1,7 @@
 class CalculateBolus {
     static calculateDailyDose(weight: number): number { //Weight in kg
         if(weight >= 1 && weight <= 430){
-            let totalDailyIntake:number = 0.55 * weight;
+            const totalDailyIntake:number = 0.55 * weight;
             return totalDailyIntake;
         }
         else{
@@ -11,7 +11,7 @@ class CalculateBolus {
 
     static calculateBasalDose(totalDailyIntake: number): number { //DailyIntake in Units
         if(totalDailyIntake > 0){
-            let basalDose:number = totalDailyIntake / 2
+            const basalDose:number = totalDailyIntake / 2
             return basalDose;
         }
         else{
@@ -21,8 +21,8 @@ class CalculateBolus {
 
     static calculateIntakeMeal(totalDailyIntake: number, mealCarbs: number) : number{ //DailyIntake in Units, mealCarbs in grams
         if(mealCarbs >= 1 && mealCarbs <= 300){
-            let ratio:number = 500 / totalDailyIntake;
-            let intakeMeal:number = mealCarbs / ratio;
+            const ratio:number = 500 / totalDailyIntake;
+            const intakeMeal:number = mealCarbs / ratio;
             return intakeMeal;
         }
         else{
@@ -32,7 +32,7 @@ class CalculateBolus {
 }
 
 //for testing
-module.exports = CalculateBolus;
+//module.exports = CalculateBolus;
 
 //event listener
 window.addEventListener('load', function(){
@@ -41,7 +41,7 @@ window.addEventListener('load', function(){
 
     if(buttonWeight){
         document.getElementById("buttonWeight").addEventListener("click", function() {
-            let weight = (<HTMLInputElement>document.getElementById("userWeight")).value;
+            const weight = (<HTMLInputElement>document.getElementById("userWeight")).value;
 
             if(weight.match(/^[0-9]+$/)){
                 if (weight){
@@ -51,7 +51,7 @@ window.addEventListener('load', function(){
                         alert("ERROR: Weight must be between 1 and 430 kilograms!");
                     }
                     else{
-                        let outputBaselDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
+                        const outputBaselDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
 
                         if (outputBaselDose !== 0){
                             document.getElementById("dailyDoseNumber").innerHTML = outputDailyDose.toString() + " Units";
@@ -74,11 +74,11 @@ window.addEventListener('load', function(){
     if(buttonCarbs){
         document.getElementById("buttonCarbs").addEventListener("click", function() {
             if(outputDailyDose){
-                let carbsWeight = (<HTMLInputElement>document.getElementById("userCarbs")).value;
+                const carbsWeight = (<HTMLInputElement>document.getElementById("userCarbs")).value;
 
                 if(carbsWeight.match(/^[0-9]+$/)){
                     if (carbsWeight){
-                        let output = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(carbsWeight)));
+                        const output = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(carbsWeight)));
 
                         if (output == 0){
                             alert("ERROR: Amount of Carbs must be between 1 and 300 grams!");
