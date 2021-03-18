@@ -20,10 +20,10 @@ class CalculateBolus {
   }
 
   static calculateIntakeMeal(
+    //DailyIntake in Units, mealCarbs in grams
     totalDailyIntake: number,
     mealCarbs: number
   ): number {
-    //DailyIntake in Units, mealCarbs in grams
     if (mealCarbs >= 1 && mealCarbs <= 300) {
       const ratio: number = 500 / totalDailyIntake;
       const intakeMeal: number = mealCarbs / ratio;

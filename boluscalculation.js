@@ -21,8 +21,9 @@ var CalculateBolus = /** @class */ (function () {
             return 0;
         }
     };
-    CalculateBolus.calculateIntakeMeal = function (totalDailyIntake, mealCarbs) {
-        //DailyIntake in Units, mealCarbs in grams
+    CalculateBolus.calculateIntakeMeal = function (
+    //DailyIntake in Units, mealCarbs in grams
+    totalDailyIntake, mealCarbs) {
         if (mealCarbs >= 1 && mealCarbs <= 300) {
             var ratio = 500 / totalDailyIntake;
             var intakeMeal = mealCarbs / ratio;
