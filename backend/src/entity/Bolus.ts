@@ -1,18 +1,14 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity()
-export class User {
+export class Bolus {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    firstName: string;
+    weight: string;
 
     @Column()
-    lastName: string;
-
-    @Column()
-    age: number;
-
+    carbs: string;
 }
