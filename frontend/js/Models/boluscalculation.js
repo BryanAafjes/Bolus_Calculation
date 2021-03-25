@@ -35,9 +35,9 @@ var CalculateBolus = /** @class */ (function () {
     };
     return CalculateBolus;
 }());
-//export { CalculateBolus };
+export { CalculateBolus };
 //for testing
-module.exports = CalculateBolus;
+//module.exports = CalculateBolus;
 //event listener
 // window.addEventListener(
 //   "load",
