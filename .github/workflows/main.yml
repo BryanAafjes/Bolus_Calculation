@@ -15,5 +15,6 @@ jobs:
       - name: Run Tests
         run: |
           cd frontend
+          cd unittests
           npm install
           npm test

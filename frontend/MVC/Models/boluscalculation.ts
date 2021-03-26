@@ -1,49 +1,49 @@
-var CalculateBolus = /** @class */ (function () {
-    function CalculateBolus() {
+export class CalculateBolus {
+  static calculateDailyDose(weight: number): number {
+    //Weight in kg
+    if (weight >= 1 && weight <= 430) {
+      const totalDailyIntake: number = 0.55 * weight;
+      return totalDailyIntake;
+    } else {
+      return 0;
     }
-    CalculateBolus.calculateDailyDose = function (weight) {
-        //Weight in kg
-        if (weight >= 1 && weight <= 430) {
-            var totalDailyIntake = 0.55 * weight;
-            return totalDailyIntake;
-        }
-        else {
-            return 0;
-        }
-    };
-    CalculateBolus.calculateBasalDose = function (totalDailyIntake) {
-        //DailyIntake in Units
-        if (totalDailyIntake > 0) {
-            var basalDose = totalDailyIntake / 2;
-            return basalDose;
-        }
-        else {
-            return 0;
-        }
-    };
-    CalculateBolus.calculateIntakeMeal = function (
+  }
+
+  static calculateBasalDose(totalDailyIntake: number): number {
+    //DailyIntake in Units
+    if (totalDailyIntake > 0) {
+      const basalDose: number = totalDailyIntake / 2;
+      return basalDose;
+    } else {
+      return 0;
+    }
+  }
+
+  static calculateIntakeMeal(
     //DailyIntake in Units, mealCarbs in grams
-    totalDailyIntake, mealCarbs) {
-        if (mealCarbs >= 1 && mealCarbs <= 300) {
-            var ratio = 500 / totalDailyIntake;
-            var intakeMeal = mealCarbs / ratio;
-            return intakeMeal;
-        }
-        else {
-            return 0;
-        }
-    };
-    return CalculateBolus;
-}());
-export { CalculateBolus };
+    totalDailyIntake: number,
+    mealCarbs: number
+  ): number {
+    if (mealCarbs >= 1 && mealCarbs <= 300) {
+      const ratio: number = 500 / totalDailyIntake;
+      const intakeMeal: number = mealCarbs / ratio;
+      return intakeMeal;
+    } else {
+      return 0;
+    }
+  }
+}
+
 //for testing
-module.exports = CalculateBolus;
+//module.exports = CalculateBolus;
+
 //event listener
 // window.addEventListener(
 //   "load",
 //   function () {
 //     const buttonWeight = document.getElementById("buttonWeight");
 //     let outputDailyDose;
+
 //     if (buttonWeight) {
 //       document
 //         .getElementById("buttonWeight")
@@ -51,6 +51,7 @@ module.exports = CalculateBolus;
 //           const weight = (<HTMLInputElement>(
 //             document.getElementById("userWeight")
 //           )).value;
+
 //           if (weight.match(/^[0-9]+$/)) {
 //             if (weight) {
 //               outputDailyDose = Math.round(
@@ -63,6 +64,7 @@ module.exports = CalculateBolus;
 //                 const outputBaselDose = Math.round(
 //                   CalculateBolus.calculateBasalDose(outputDailyDose)
 //                 );
+
 //                 if (outputBaselDose !== 0) {
 //                   document.getElementById("dailyDoseNumber").innerHTML =
 //                     outputDailyDose.toString() + " Units";
@@ -78,7 +80,9 @@ module.exports = CalculateBolus;
 //           }
 //         });
 //     }
+
 //     const buttonCarbs = document.getElementById("buttonWeight");
+
 //     if (buttonCarbs) {
 //       document
 //         .getElementById("buttonCarbs")
@@ -87,6 +91,7 @@ module.exports = CalculateBolus;
 //             const carbsWeight = (<HTMLInputElement>(
 //               document.getElementById("userCarbs")
 //             )).value;
+
 //             if (carbsWeight.match(/^[0-9]+$/)) {
 //               if (carbsWeight) {
 //                 const output = Math.round(
@@ -95,6 +100,7 @@ module.exports = CalculateBolus;
 //                     parseFloat(carbsWeight)
 //                   )
 //                 );
+
 //                 if (output == 0) {
 //                   alert(
 //                     "ERROR: Amount of Carbs must be between 1 and 300 grams!"
