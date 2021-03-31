@@ -1,15 +1,35 @@
-import "reflect-metadata";
-import {createConnection} from "typeorm";
-import { Bolus2 } from "./bolus2";
-import {Bolus} from "./entity/Bolus";
+/**
+ * Required External Modules
+ */
+ import * as dotenv from "dotenv";
+ import express from "express";
+ import cors from "cors";
+ import helmet = require("helmet");
 
-createConnection().then(async connection => {
-    /*const bolus = new Bolus();
-    bolus.weight = "50";
-    bolus.carbs = "70";
-    await connection.manager.save(bolus);
-    console.log("Saved a new patiënt with weight: " + bolus.weight + " and carbs " + bolus.carbs);*/
+ import { itemsRouter } from "./items/calculations.router";
 
-    await Bolus2(50, 50).catch((err) => { console.log(err);   });
+ dotenv.config();
 
-}).catch(error => console.log(error));
+/**
+ * App Variables
+ */
+ const PORT: number = 8000;
+ const app = express();
+
+/**
+ *  App Configuration
+ */
+
+ app.use(helmet());
+ app.use(cors());
+ app.use(express.json());
+
+ app.use("/api", itemsRouter);
+
+/**
+ * Server Activation
+ */
+
+ app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+  });
