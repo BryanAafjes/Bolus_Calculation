@@ -1,4 +1,4 @@
-import { CalculateBolus } from "../MVC/Models/boluscalculation";
+import { CalculateBolus } from "../MVC/Controllers/boluscalculation";
 
 //tests for Daily Dose Function
 test('properly calculate daily dose from weight', () => {
