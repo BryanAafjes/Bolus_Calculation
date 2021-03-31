@@ -11,4 +11,7 @@ export class Bolus {
 
     @Column()
     carbs: string;
+
+    @Column()
+    calculationTime: number;
 }
