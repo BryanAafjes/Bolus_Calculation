@@ -1,4 +1,4 @@
-import {CalculateBolus} from "./boluscalculation.js";
+import {CalculateBolus} from "../Controllers/boluscalculation.js";
 
 //event listener
 window.addEventListener(
