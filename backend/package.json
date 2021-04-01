@@ -18,7 +18,6 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-      "api": "ts-node-dev --respawn --pretty --transpile-only src/api/api.ts"
+      "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts"
    }
 }

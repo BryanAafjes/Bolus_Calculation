@@ -10,15 +10,12 @@
  import { Items } from "./calculations.interface";
 
 /**
- * In-Memory Store //HIER MOET EIGENLIJK COMMUNICATIE MET DATABASE KOMEN
- */
-
-
-/**
  * Service Methods
  */
+const connection = createConnection();
+
 export const create = async (newItem: BaseItem): Promise<BaseItem> => {
-    createConnection().then(async connection => {
+    connection.then(async connection => {
         await Bolus2(newItem.weight, newItem.carbDose, newItem.calculationDateTime).catch((err) => {console.log(err);});
     }).catch(error => console.log(error));
 
