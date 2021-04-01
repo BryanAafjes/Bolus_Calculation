@@ -4,7 +4,10 @@
   "description": "",
   "main": "boluscalculation.js",
   "dependencies": {
-    "live-server": "^1.2.1"
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^3.0.0",
+    "live-server": "^1.2.1",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
