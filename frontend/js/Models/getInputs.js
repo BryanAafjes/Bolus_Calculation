@@ -1,13 +1,16 @@
 import { CalculateBolus } from "../Controllers/boluscalculation.js";
+import { api } from "../Controllers/apiController.js";
 //event listener
 window.addEventListener("load", function () {
     var buttonWeight = document.getElementById("buttonWeight");
     var outputDailyDose;
+    var weightAPI;
     if (buttonWeight) {
         document
             .getElementById("buttonWeight")
             .addEventListener("click", function () {
             var weight = (document.getElementById("userWeight")).value;
+            weightAPI = weight;
             if (weight.match(/^[0-9]+$/)) {
                 if (weight) {
                     outputDailyDose = Math.round(CalculateBolus.calculateDailyDose(parseFloat(weight)));
@@ -41,6 +44,7 @@ window.addEventListener("load", function () {
             .addEventListener("click", function () {
             if (outputDailyDose) {
                 var carbsWeight = (document.getElementById("userCarbs")).value;
+                api.sendCalculationToAPI(weightAPI, parseFloat(carbsWeight));
                 if (carbsWeight.match(/^[0-9]+$/)) {
                     if (carbsWeight) {
                         var output = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(carbsWeight)));

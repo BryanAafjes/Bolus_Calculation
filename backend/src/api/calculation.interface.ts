@@ -1,7 +1,7 @@
 export interface BaseItem {
     weight: number;
     carbDose: number;
-    calculationDateTime: number;
+    calculationDateTime: Date;
   }
   export interface Item extends BaseItem {
     id: number;

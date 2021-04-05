@@ -1,4 +1,5 @@
 import {CalculateBolus} from "../Controllers/boluscalculation.js";
+import {api} from "../Controllers/apiController.js";
 
 //event listener
 window.addEventListener(
@@ -6,6 +7,7 @@ window.addEventListener(
     function () {
       const buttonWeight = document.getElementById("buttonWeight");
       let outputDailyDose;
+      let weightAPI;
 
       if (buttonWeight) {
         document
@@ -14,6 +16,7 @@ window.addEventListener(
             const weight = (<HTMLInputElement>(
               document.getElementById("userWeight")
             )).value;
+            weightAPI = weight;
 
             if (weight.match(/^[0-9]+$/)) {
               if (weight) {
@@ -54,6 +57,8 @@ window.addEventListener(
               const carbsWeight = (<HTMLInputElement>(
                 document.getElementById("userCarbs")
               )).value;
+
+              api.sendCalculationToAPI(weightAPI, parseFloat(carbsWeight));
 
               if (carbsWeight.match(/^[0-9]+$/)) {
                 if (carbsWeight) {
