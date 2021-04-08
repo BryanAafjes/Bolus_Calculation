@@ -33,6 +33,8 @@ var CalculateBolus = /** @class */ (function () {
             return 0;
         }
     };
+    CalculateBolus.createCalculationArray = function () {
+    };
     return CalculateBolus;
 }());
 export { CalculateBolus };

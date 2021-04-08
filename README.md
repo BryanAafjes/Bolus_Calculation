@@ -11,11 +11,10 @@ Daarnaast moet je Typescript installeren:
 npm install -g typescript
 ```
 
-Om alle packages benodigd voor het project te installeren, kan je npm install gebruiken (in je project folder):
+Om alle packages benodigd voor het project te installeren, kan je npm install gebruiken (in zowel de front- als backend):
 ```properties
 npm install
 ```
-
 
 ## Gebruik
 
@@ -25,17 +24,22 @@ node liveserver.js
 ```
 **Voor het starten van een Unit Test met [Jest](https://jestjs.io/):**
 
-Om een test te kunnen starten moet je eerst in het bestand "boluscalculation.ts" lijn 35 uncommenten door de "//" weg te halen.
-
-Vervolgens moet je dit eerst compilen, dit kan als volgt (in je project folder):
+Eerst moet de frontend compilen, dit kan door middel van de volgende command uit te voeren (in de frontend folder):
 ```properties
 tsc --watch
 ```
 Daarna kan de unit test worden uitgevoert door het volgende commando uit te voeren:
-
 ```properties
 npm test
 ```
+**Gebruik van de Backend API:**
+Om de API te kunnen starten moet er eerst een ORM config met de databasegegevens worden aangemaakt, dit kan aan de hand van de "ormconfig.example.json" file in de backend.
+
+Als dit is gedaan kan de API worden opgestart door in de backend directory de volgende command uit te voeren:
+```properties
+npm run dev
+```
+
 ## Tooling
 We hebben voor dit project gebruik gemaakt van de volgende tooling:
 - [NodeJS](https://nodejs.org/en/download/)
