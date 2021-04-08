@@ -1,23 +1,22 @@
 import {CalculateBolus} from "../Controllers/boluscalculation.js";
 import {api} from "../Controllers/apiController.js";
 
-        function UpdateFrontendBolusList()
-        {
-          (async () => {  
-            const x = await api.getCalculationFromApi();
-            Promise.resolve(x);
-            console.log(x[0].carbs);
-            document.getElementById("boluslist").innerHTML = "";
-            let i = 0;
-            x.forEach(function (value) {
-                //console.log(x[i].weight);
-                let date = new Date(x[i].calculationTime).toLocaleString();
-                //console.log(date);
-                document.getElementById("boluslist").insertAdjacentHTML("beforeend", "id: " + x[i].id + " Weight: " + x[i].weight + " carbdose: " + x[i].carbs + " calculationtime: " + date + "<br>" + "<br>");
-                i++;                                                                                                                                                     
-            });
-          })();
-        }
+function UpdateFrontendBolusList()
+{
+  (async () => {
+    const data = await api.getCalculationFromApi();
+    Promise.resolve(data);
+    console.log(data[0].carbs);
+    document.getElementById("boluslist").innerHTML = "";
+    let i = 0;
+    data.forEach(function() {
+        const date = new Date(data[i].calculationTime).toLocaleString();
+        document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
+        i++;
+    });
+  })();
+}
+
 //event listener
 window.addEventListener(
     "load",
@@ -30,10 +29,8 @@ window.addEventListener(
         document
         .getElementById("buttonCalculationList")
         .addEventListener("click", function () {
-          alert("floober");
           UpdateFrontendBolusList();
         });
-        
       }
       if (buttonWeight) {
         document
@@ -47,9 +44,7 @@ window.addEventListener(
               if (weight) {
                 outputDailyDose = Math.round(
                   CalculateBolus.calculateDailyDose(parseFloat(weight))
-                  
                 );
-                
                 //check for error
                 if (outputDailyDose == 0) {
                   alert("ERROR: Weight must be between 1 and 430 kilograms!");
@@ -63,7 +58,6 @@ window.addEventListener(
                       outputDailyDose.toString() + " Units";
                     document.getElementById("basalDoseNumber").innerHTML =
                       outputBaselDose.toString() + " Units";
-                      alert("test");
                   }
                 }
               } else {
