@@ -18,6 +18,16 @@ npm install
 
 ## Gebruik
 
+## DOCKER
+Ik raad sterk aan om mijn [Taskfile](https://taskfile.dev) te gebruiken.
+
+Commands:
+- `$ task d:up` Start alle docker containers
+- `$ task d:up:s` Start alle docker containers in de background
+- `$ task d:down` Sluit alle docker containers
+- `$ task d:logs` Zie de logs in de backend
+- `$ task d:sql` Ga direct in de SQL shell van de database container
+
 **Voor het starten van de liveserver (in je project folder):**
 ```properties
 node liveserver.js
