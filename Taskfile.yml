@@ -1,0 +1,31 @@
+version: "3"
+
+silent: true
+
+dotenv: ['./backend/.env']
+
+tasks:
+  d:up:
+    desc: Startup docker containers
+    cmds:
+      - docker-compose --env-file ./backend/.env up
+  d:up:s:
+    desc: Startup docker containers
+    cmds:
+      - docker-compose --env-file ./backend/.env up -d
+  d:down:
+    desc: Shutdown docker containers
+    cmds:
+      - docker-compose --env-file ./backend/.env down
+  d:build:
+    desc: (re)-build Docker image
+    cmds:
+      - docker-compose --env-file ./backend/.env up --build
+  d:logs:
+    desc: Read backend logs
+    cmds:
+      - docker logs backend
+  d:sql:
+    desc: get into sql console
+    cmds:
+      - docker exec -it db mysql -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE
