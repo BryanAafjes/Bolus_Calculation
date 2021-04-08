@@ -28,6 +28,11 @@ Commands:
 - `$ task d:logs` Zie de logs in de backend
 - `$ task d:sql` Ga direct in de SQL shell van de database container
 
+Anders kun je de volgende commando's runnen:
+- `$ docker-compose up`
+
+Vervolgens kun je via http://localhost:8181 de webpagina bereiken.
+
 **Voor het starten van de liveserver (in je project folder):**
 ```properties
 node liveserver.js
