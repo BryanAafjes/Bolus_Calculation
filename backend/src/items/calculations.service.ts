@@ -3,7 +3,7 @@
  */
  import "reflect-metadata";
  import {createConnection} from "typeorm";
- import {Bolus2} from "../bolus2";
+ import {Bolus2} from "../Bolus2";
  import {Bolus} from "../entity/Bolus";
 
  import { BaseItem, Item } from "./calculation.interface";
