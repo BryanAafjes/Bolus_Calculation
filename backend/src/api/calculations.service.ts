@@ -4,7 +4,7 @@
 
  import "reflect-metadata";
  import {createConnection} from "typeorm";
- import {Bolus2, SelectAllCalculations} from "../bolus2";
+ import {Bolus2, SelectAllCalculations} from "../Bolus2";
  import { BaseItem, Item } from "./calculation.interface";
 
 /**
