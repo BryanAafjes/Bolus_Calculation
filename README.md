@@ -18,7 +18,7 @@ npm install
 
 ## Gebruik
 
-# Docker
+### Docker
 Ik raad sterk aan om onze [Taskfile](https://taskfile.dev) te gebruiken.
 
 Commands:
