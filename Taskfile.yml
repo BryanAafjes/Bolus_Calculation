@@ -8,7 +8,7 @@ tasks:
   d:up:
     desc: Startup docker containers
     cmds:
-      - docker-compose up
+      - docker-compose --env-file ./backend/.env up
   d:up:s:
     desc: Startup docker containers
     cmds:
