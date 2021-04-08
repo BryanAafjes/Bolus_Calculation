@@ -1,26 +1,28 @@
 /**
  * Data Model Interfaces
  */
+
  import "reflect-metadata";
  import {createConnection} from "typeorm";
- import {Bolus2} from "../bolus2";
- import {Bolus} from "../entity/Bolus";
-
+ import {Bolus2, SelectAllCalculations} from "../bolus2";
  import { BaseItem, Item } from "./calculation.interface";
- import { Items } from "./calculations.interface";
-
-/**
- * In-Memory Store //HIER MOET EIGENLIJK COMMUNICATIE MET DATABASE KOMEN
- */
-
 
 /**
  * Service Methods
  */
+const connection = createConnection();
+
 export const create = async (newItem: BaseItem): Promise<BaseItem> => {
-    createConnection().then(async connection => {
+    //console.log(newItem, "dit is een test");
+    connection.then(async connection => {
         await Bolus2(newItem.weight, newItem.carbDose, newItem.calculationDateTime).catch((err) => {console.log(err);});
     }).catch(error => console.log(error));
-
     return newItem;
+};
+
+export const selectall = async() => {
+    return await SelectAllCalculations().catch(error => {
+        console.log(error);
+        throw(error)
+      });
 };

@@ -1,5 +1,6 @@
 import { CalculateBolus } from "../MVC/Controllers/boluscalculation";
-
+import {api} from "../MVC/Controllers/apiController"
+import 'isomorphic-fetch'
 //tests for Daily Dose Function
 test('properly calculate daily dose from weight', () => {
     expect(CalculateBolus.calculateDailyDose(90)).toBe(49.50000000000001);
@@ -42,3 +43,12 @@ test('give error when negative number is entered in calculate meal intake functi
 test('give error when number over 300 is entered in calculate meal intake function', () => {
     expect(CalculateBolus.calculateIntakeMeal(50, 500)).toBe(0);
 });
+
+//Turned off because of github pipeline, that has no active API server and database.
+//  test('sent API request to backend', async () => {
+//      expect(await api.sendCalculationToAPI(90, 70)).toBe(true);
+//  });
+
+// test('get calculations from database via get request', async () => {
+//     expect(await api.getCalculationFromApi()).not.toBeUndefined();
+// });
