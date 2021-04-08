@@ -43,7 +43,7 @@ var api = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        date = new Date;
+                        date = new Date().toLocaleString();
                         json = JSON.stringify({ "weight": weight, "carbDose": carbDose, "calculationDateTime": date });
                         myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
@@ -65,6 +65,31 @@ var api = /** @class */ (function () {
                             return [2 /*return*/, false];
                         }
                         return [2 /*return*/];
+                }
+            });
+        });
+    };
+    api.getCalculationFromApi = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var myHeaders, res, response, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("Connection", "keep-alive");
+                        myHeaders.append("timeout", "5000");
+                        return [4 /*yield*/, fetch("http://localhost:8000/api/getcalculation", {
+                                method: 'GET',
+                                headers: myHeaders,
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json().catch(function (error) { return console.log('ERROR'); })];
+                    case 2:
+                        data = _a.sent();
+                        console.log(data, "howdy");
+                        return [2 /*return*/, data];
                 }
             });
         });
