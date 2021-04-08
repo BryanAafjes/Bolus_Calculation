@@ -10,7 +10,12 @@
 /**
  * Service Methods
  */
-const connection = createConnection();
+ let connection;
+ connection = createConnection().catch(() => {
+   setTimeout(() => {
+     connection = createConnection();
+   }, 10000)
+ });
 
 export const create = async (newItem: BaseItem): Promise<BaseItem> => {
     //console.log(newItem, "dit is een test");
