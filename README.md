@@ -18,8 +18,8 @@ npm install
 
 ## Gebruik
 
-## DOCKER
-Ik raad sterk aan om mijn [Taskfile](https://taskfile.dev) te gebruiken.
+# Docker
+Ik raad sterk aan om onze [Taskfile](https://taskfile.dev) te gebruiken.
 
 Commands:
 - `$ task d:up` Start alle docker containers
