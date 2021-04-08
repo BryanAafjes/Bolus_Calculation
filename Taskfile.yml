@@ -29,3 +29,7 @@ tasks:
     desc: get into sql console
     cmds:
       - docker exec -it db mysql -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE
+  f:test:
+    desc: Run unit tests in frontend
+    cmds:
+      - docker exec -it frontend npm run test
