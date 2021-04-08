@@ -15,6 +15,20 @@ services:
       - '8181:8181'
     networks:
       - app-network
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+      target: base
+    volumes:
+      - ./backend:/home/node/app/src
+    container_name: backend
+    expose:
+      - '8000'
+    ports:
+      - '8000:8000'
+    networks:
+      - app-network
   db:
     image: mysql:5.7.22
     container_name: db
