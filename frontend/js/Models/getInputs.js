@@ -39,21 +39,19 @@ import { api } from "../Controllers/apiController.js";
 function UpdateFrontendBolusList() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var x, i;
+        var data, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, api.getCalculationFromApi()];
                 case 1:
-                    x = _a.sent();
-                    Promise.resolve(x);
-                    console.log(x[0].carbs);
+                    data = _a.sent();
+                    Promise.resolve(data);
+                    console.log(data[0].carbs);
                     document.getElementById("boluslist").innerHTML = "";
                     i = 0;
-                    x.forEach(function (value) {
-                        //console.log(x[i].weight);
-                        var date = new Date(x[i].calculationTime).toLocaleString();
-                        //console.log(date);
-                        document.getElementById("boluslist").insertAdjacentHTML("beforeend", "id: " + x[i].id + " Weight: " + x[i].weight + " carbdose: " + x[i].carbs + " calculationtime: " + date + "<br>" + "<br>");
+                    data.forEach(function () {
+                        var date = new Date(data[i].calculationTime).toLocaleString();
+                        document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
                         i++;
                     });
                     return [2 /*return*/];
@@ -71,7 +69,6 @@ window.addEventListener("load", function () {
         document
             .getElementById("buttonCalculationList")
             .addEventListener("click", function () {
-            alert("floober");
             UpdateFrontendBolusList();
         });
     }
@@ -95,7 +92,6 @@ window.addEventListener("load", function () {
                                 outputDailyDose.toString() + " Units";
                             document.getElementById("basalDoseNumber").innerHTML =
                                 outputBaselDose.toString() + " Units";
-                            alert("test");
                         }
                     }
                 }

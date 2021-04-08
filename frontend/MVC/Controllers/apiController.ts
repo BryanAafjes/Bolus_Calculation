@@ -1,3 +1,4 @@
+import { calculation } from "../Models/calculation";
 export class api {
     static async sendCalculationToAPI(weight: number, carbDose: number): Promise < boolean > {
         const date = new Date().toLocaleString();
@@ -21,7 +22,7 @@ export class api {
         }
     }
 
-    static async getCalculationFromApi(): Promise < string > {
+    static async getCalculationFromApi(): Promise<Array<calculation>>{
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Connection", "keep-alive");

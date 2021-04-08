@@ -57,11 +57,9 @@ var api = /** @class */ (function () {
                     case 1:
                         response = _a.sent();
                         if (response.ok) {
-                            //console.log("Post created!")
                             return [2 /*return*/, true];
                         }
                         else {
-                            //console.log("Post failed!")
                             return [2 /*return*/, false];
                         }
                         return [2 /*return*/];
@@ -71,7 +69,7 @@ var api = /** @class */ (function () {
     };
     api.getCalculationFromApi = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var myHeaders, res, response, data;
+            var myHeaders, response, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -85,10 +83,10 @@ var api = /** @class */ (function () {
                             })];
                     case 1:
                         response = _a.sent();
-                        return [4 /*yield*/, response.json().catch(function (error) { return console.log('ERROR'); })];
+                        return [4 /*yield*/, response.json().catch(function (error) { return console.log(error); })];
                     case 2:
                         data = _a.sent();
-                        console.log(data, "howdy");
+                        console.log(data);
                         return [2 /*return*/, data];
                 }
             });
