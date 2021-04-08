@@ -32,4 +32,9 @@ export class CalculateBolus {
       return 0;
     }
   }
+  
+  static createCalculationArray()
+  {
+    
+  }
 }
