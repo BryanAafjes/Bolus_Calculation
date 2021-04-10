@@ -14,7 +14,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Run Tests
         run: |
-          cd frontend
-          cd unittests
+          cd frontend/unittests
           npm install
           npm test
