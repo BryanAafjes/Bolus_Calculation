@@ -6,8 +6,6 @@ services:
     container_name: db
     restart: unless-stopped
     tty: true
-    env_file:
-      - ./backend/.env
     ports:
       - "3306:3306"
     environment:
