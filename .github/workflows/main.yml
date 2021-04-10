@@ -8,12 +8,15 @@ on:
     branches: [main]
 
 jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build stack
+        run: docker-compose --env-file ./backend/.env up -d
   Jest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Run Tests
-        run: |
-          cd frontend/unittests
-          npm install
-          npm test
+        run: docker exec -it frontend npm run test
