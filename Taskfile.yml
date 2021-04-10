@@ -12,21 +12,21 @@ tasks:
   d:up:s:
     desc: Startup docker containers
     cmds:
-      - docker-compose -d
+      - docker-compose --env-file ./backend/.env up -d
   d:down:
     desc: Shutdown docker containers
     cmds:
-      - docker-compose down
+      - docker-compose --env-file ./backend/.env down
   d:build:
     desc: (re)-build Docker image
     cmds:
-      - docker-compose --build
+      - docker-compose --env-file ./backend/.env up --build -d
   d:logs:
     desc: Read backend logs
     cmds:
       - docker logs backend
   d:sql:
-    desc: get into sql console
+    desc: Get into sql console
     cmds:
       - docker exec -it db mysql -u $DB_USERNAME --password=$DB_PASSWORD $DB_DATABASE
   f:test:
