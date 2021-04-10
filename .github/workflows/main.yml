@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Build stack
-        run: docker-compose --env-file ./backend/.env up -d
+        run: docker-compose --env-file backend/.env up -d
   Jest:
     runs-on: ubuntu-latest
     steps:
