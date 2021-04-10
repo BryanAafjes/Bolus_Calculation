@@ -8,15 +8,11 @@ on:
     branches: [main]
 
 jobs:
-  Build:
+  Jest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Build stack
         run: docker-compose --env-file backend/.env.example up -d
-  Jest:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
       - name: Run Tests
         run: docker exec -it frontend npm run test
