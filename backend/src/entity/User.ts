@@ -22,5 +22,9 @@ export class User {
         enum: ["Patient", "Gp"],
         default: "Patient"
     })
-    role: UserRole/* Idk of die [] erbij moet */[]
+    role: UserRole/* Idk of die [] erbij moet []*/
+    @Column()
+    created_at: Date;
+    @Column()
+    updated_at: Date;
 }
