@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Build stack
+        run: docker-compose --env-file backend/.env.example up -d
       - name: Run Tests
-        run: |
-          cd frontend
-          cd unittests
-          npm install
-          npm test
+        run: docker-compose exec -it frontend npm run test
