@@ -6,7 +6,8 @@
  import cors from "cors";
  import helmet = require("helmet");
 
- import { itemsRouter } from "./api/calculations.router";
+ import { itemsRouter } from "./api/calculation/calculations.router";
+ import { userRouter } from "./api/user/users.router";
 
  dotenv.config();
 
@@ -25,6 +26,7 @@
  app.use(express.json());
 
  app.use("/api", itemsRouter);
+ app.use("/api", userRouter);
 
 /**
  * Server Activation
