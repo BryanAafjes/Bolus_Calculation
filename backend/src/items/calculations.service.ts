@@ -6,8 +6,8 @@
  import {Bolus2} from "../Bolus2";
  import {Bolus} from "../entity/Bolus";
 
- import { BaseItem, Item } from "../api/calculation.interface";
- import { Items } from "../api/calculations.interface";
+ import { BaseItem, Item } from "../api/calculation/calculation.interface";
+ import { Items } from "../api/calculation/calculations.interface";
 
 /**
  * In-Memory Store //HIER MOET EIGENLIJK COMMUNICATIE MET DATABASE KOMEN

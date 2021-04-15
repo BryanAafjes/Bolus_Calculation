@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolus Calculator</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!--SCRIPTS-->
+    <script>var exports = {};</script>
+    <script type="module" src="../../js/Models/getInputs.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">Philips!</h1>
+            <p>Creëer account</p>
+            <div class="row center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="registerForm">
+                                <div class="form-group">
+                                    <label class="float-left" for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="float-left" for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email...">
+                                </div>
+                                <div class="form-group">
+                                    <label class="float-left" for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password..">
+                                </div>
+                                <div class="form-group">
+                                    <label class="float-left" for="passwordRepeat">Repeat Password</label>
+                                    <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat Password..">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
