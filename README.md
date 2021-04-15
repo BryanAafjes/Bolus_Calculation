@@ -27,6 +27,7 @@ Commands:
 - `$ task d:down` Sluit alle docker containers
 - `$ task d:logs` Zie de logs in de backend
 - `$ task d:sql` Ga direct in de SQL shell van de database container
+- `$ task f:test` Run alle unit tests in de frontend container.
 
 Anders kun je de volgende commando's runnen:
 - `$ docker-compose up`
