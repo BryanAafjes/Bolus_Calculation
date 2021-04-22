@@ -1,18 +1,23 @@
-// checkPassword() {
-//     return (<HTMLInputElement>document.getElementById("password")).value == (<HTMLInputElement>document.getElementById("passwordRepeat")).value;
-// }
+import { RegisterUser } from "../../js/Controllers/userController.js";
 
+function checkPassword() {
+    return (<HTMLInputElement>document.getElementById("password")).value == (<HTMLInputElement>document.getElementById("passwordRepeat")).value;
+}
 
-// const form: HTMLFormElement = document.querySelector("#registerForm");
-// form.onsubmit = () => {
-//     const formData = new FormData(form);
-//     if(checkPassword()){
-//         const username = formData.get("username");
-//         const password = formData.get("password");
-//         const email = formData.get("email");
+const form: HTMLFormElement = document.querySelector("#registerForm");
+form.onsubmit = () => {
+    const formData = new FormData(form);
+    if(checkPassword()){
+        const username = formData.get("username").toString();//  Username validation
+        const email = formData.get("email").toString(); //  Email validation
+        const password = formData.get("password").toString(); // Password validation/Hashing
+        /*if(email.match("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b") && username.match("/^[^(|\\]~@0-9!%^&*=};:?><’)]*$/") && password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*d).{8,15}")   die andere )*/
+        /*{*/
+            RegisterUser.CreateNewUser(username, email, password, "Patient" /* Role van iets */);
+        alert("Je bolle moeder, het werkt");
 
-
-//     } else {
-//         return false;
-//     }
-// };
+        /*}*/
+    } else {
+        return false;
+    }
+};

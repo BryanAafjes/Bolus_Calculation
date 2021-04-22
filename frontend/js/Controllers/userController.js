@@ -43,14 +43,43 @@ var RegisterUser = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        creationDate = new Date().toLocaleString();
-                        updatedDate = new Date().toLocaleString();
-                        json = JSON.stringify({ "username": username, "email": email, "passsword": password, "userRole": userRole, "created_at": creationDate, "updated_at": updatedDate });
+                        creationDate = new Date().toISOString();
+                        updatedDate = new Date().toISOString();
+                        json = JSON.stringify({ "username": username, "email": email, "password": password, "userRole": userRole, "created_at": creationDate, "updated_at": updatedDate });
                         myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("Connection", "keep-alive");
                         myHeaders.append("timeout", "5000");
                         return [4 /*yield*/, fetch("http://localhost:8000/api/adduser", {
+                                method: 'POST',
+                                headers: myHeaders,
+                                body: json,
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        if (response.ok) {
+                            return [2 /*return*/, true];
+                        }
+                        else {
+                            return [2 /*return*/, false];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RegisterUser.VerifyUser = function (email, password) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json, myHeaders, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = JSON.stringify({ "email": email, "password": password });
+                        myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("Connection", "keep-alive");
+                        myHeaders.append("timeout", "5000");
+                        return [4 /*yield*/, fetch("http://localhost:8000/api/loginuser", {
                                 method: 'POST',
                                 headers: myHeaders,
                                 body: json,
