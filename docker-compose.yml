@@ -48,7 +48,7 @@ services:
       dockerfile: ./frontend/Dockerfile
       target: base
     volumes:
-      - ./frontend:/home/node/app/src
+      - ./frontend:/home/node/app
     container_name: frontend
     expose:
       - '8181'
