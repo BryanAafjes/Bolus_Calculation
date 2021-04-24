@@ -4,6 +4,7 @@
   "description": "",
   "main": "boluscalculation.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^3.0.0",
     "live-server": "^1.2.1",
