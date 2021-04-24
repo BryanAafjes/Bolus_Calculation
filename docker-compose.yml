@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   db:
@@ -23,8 +23,7 @@ services:
       retries: 20
   backend:
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     links:
       - db
     build:
