@@ -20,6 +20,10 @@ tasks:
   d:build:
     desc: (re)-build Docker image
     cmds:
+      - docker-compose --env-file ./backend/.env up --build
+  d:build:s:
+    desc: (re)-build Docker image
+    cmds:
       - docker-compose --env-file ./backend/.env up --build -d
   d:logs:
     desc: Read backend logs
