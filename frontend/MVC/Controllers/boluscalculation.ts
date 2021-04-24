@@ -1,4 +1,5 @@
-export class CalculateBolus {
+
+  export class CalculateBolus {
   static calculateDailyDose(weight: number): number {
     //Weight in kg
     if (weight >= 1 && weight <= 430) {

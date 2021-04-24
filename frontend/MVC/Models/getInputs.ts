@@ -1,9 +1,5 @@
-import {
-  CalculateBolus
-} from "../Controllers/boluscalculation.js";
-import {
-  api
-} from "../Controllers/apiController.js";
+import { CalculateBolus } from "../Controllers/boluscalculation.js";
+import { api } from "../Controllers/apiController.js";
 
 function UpdateFrontendBolusList() {
   (async () => {
