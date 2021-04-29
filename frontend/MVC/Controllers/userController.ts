@@ -1,4 +1,4 @@
-export class RegisterUser {
+export class User {
     static async CreateNewUser(username: string, email: string, password: string, userRole: string): Promise<boolean>{
         const creationDate = new Date().toISOString();
         const updatedDate = new Date().toISOString();
@@ -13,13 +13,13 @@ export class RegisterUser {
         const response = await fetch("http://localhost:8000/api/adduser", {
             method: 'POST',
             headers: myHeaders,
-            body: json,
+            body: json
         });
 
         return response.ok;
     }
 
-    static async VerifyUser(email:string, password:string) : Promise<boolean>
+    static async VerifyUser(email:string, password:string) : Promise<Boolean>
     {
         const json = JSON.stringify({"email":email, "password":password});
 
@@ -31,10 +31,12 @@ export class RegisterUser {
         const response = await fetch("http://localhost:8000/api/loginuser", {
             method: 'POST',
             headers: myHeaders,
-            body: json,
+            body: json
         });
 
-        return response.ok;
+        let result = await response.text();
+        
+        return result == "true";
     }
 }
  
