@@ -16,11 +16,7 @@ export class RegisterUser {
             body: json,
         });
 
-        if (response.ok) {
-            return true;
-        } else {
-            return false;
-        }
+        return response.ok;
     }
 
     static async VerifyUser(email:string, password:string) : Promise<boolean>
@@ -38,10 +34,7 @@ export class RegisterUser {
             body: json,
         });
 
-        if (response.ok) {
-            return true;
-        } else {
-            return false;
-        }
+        return response.ok;
     }
 }
+ 

@@ -57,13 +57,7 @@ var RegisterUser = /** @class */ (function () {
                             })];
                     case 1:
                         response = _a.sent();
-                        if (response.ok) {
-                            return [2 /*return*/, true];
-                        }
-                        else {
-                            return [2 /*return*/, false];
-                        }
-                        return [2 /*return*/];
+                        return [2 /*return*/, response.ok];
                 }
             });
         });
@@ -86,13 +80,7 @@ var RegisterUser = /** @class */ (function () {
                             })];
                     case 1:
                         response = _a.sent();
-                        if (response.ok) {
-                            return [2 /*return*/, true];
-                        }
-                        else {
-                            return [2 /*return*/, false];
-                        }
-                        return [2 /*return*/];
+                        return [2 /*return*/, response.ok];
                 }
             });
         });

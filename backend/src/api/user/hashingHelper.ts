@@ -11,7 +11,7 @@ export class hashingHelper
         return hashedPassword;
     }
 
-    static verifyHash(hashedPassword:string, passwordToCheck:string):boolean
+    async verifyHash(hashedPassword:string, passwordToCheck:string) : Promise<boolean>
     {
         return bcrypt.compareSync(passwordToCheck, hashedPassword);
     }
