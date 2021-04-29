@@ -14,7 +14,7 @@ form.onsubmit = () => {
         /*if(email.match("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b") && username.match("/^[^(|\\]~@0-9!%^&*=};:?><’)]*$/") && password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*d).{8,15}")   die andere )*/
         /*{*/
             RegisterUser.CreateNewUser(username, email, password, "Patient" /* Role van iets */);
-        alert("Je bolle moeder, het werkt");
+        alert("Account aangemaakt!");
 
         /*}*/
     } else {
