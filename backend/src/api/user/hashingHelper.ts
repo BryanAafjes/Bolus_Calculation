@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { resolve } from 'url';
 const saltRounds = 10; // should be 10
 //const myPlaintextPassword = 's0/\/\P4$$w0rD';
