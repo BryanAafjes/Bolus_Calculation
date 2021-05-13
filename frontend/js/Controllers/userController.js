@@ -34,10 +34,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var RegisterUser = /** @class */ (function () {
-    function RegisterUser() {
+var User = /** @class */ (function () {
+    function User() {
     }
-    RegisterUser.CreateNewUser = function (username, email, password, userRole) {
+    User.CreateNewUser = function (username, email, password, userRole) {
         return __awaiter(this, void 0, void 0, function () {
             var creationDate, updatedDate, json, myHeaders, response;
             return __generator(this, function (_a) {
@@ -53,24 +53,18 @@ var RegisterUser = /** @class */ (function () {
                         return [4 /*yield*/, fetch("http://localhost:8000/api/adduser", {
                                 method: 'POST',
                                 headers: myHeaders,
-                                body: json,
+                                body: json
                             })];
                     case 1:
                         response = _a.sent();
-                        if (response.ok) {
-                            return [2 /*return*/, true];
-                        }
-                        else {
-                            return [2 /*return*/, false];
-                        }
-                        return [2 /*return*/];
+                        return [2 /*return*/, response.ok];
                 }
             });
         });
     };
-    RegisterUser.VerifyUser = function (email, password) {
+    User.VerifyUser = function (email, password) {
         return __awaiter(this, void 0, void 0, function () {
-            var json, myHeaders, response;
+            var json, myHeaders, response, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -82,21 +76,18 @@ var RegisterUser = /** @class */ (function () {
                         return [4 /*yield*/, fetch("http://localhost:8000/api/loginuser", {
                                 method: 'POST',
                                 headers: myHeaders,
-                                body: json,
+                                body: json
                             })];
                     case 1:
                         response = _a.sent();
-                        if (response.ok) {
-                            return [2 /*return*/, true];
-                        }
-                        else {
-                            return [2 /*return*/, false];
-                        }
-                        return [2 /*return*/];
+                        return [4 /*yield*/, response.text()];
+                    case 2:
+                        result = _a.sent();
+                        return [2 /*return*/, result == "true"];
                 }
             });
         });
     };
-    return RegisterUser;
+    return User;
 }());
-export { RegisterUser };
+export { User };

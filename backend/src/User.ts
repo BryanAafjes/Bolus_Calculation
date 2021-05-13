@@ -17,11 +17,13 @@ export const UserFunction = async (Username, Email, Password, Role, Created, Upd
   console.log("username: ", UserData.username, "email: ", UserData.email, " password: ", UserData.password, " rol: ",UserData.role, " created: ",UserData.created_at, " updated: ",UserData.updated_at)
 }
 
-export const SelectUser = async () => {
+export const SelectUser = async (Email, Password) : Promise <Boolean> => {
   const UserRepo = getRepository(User);
-
-  return await UserRepo.find().catch((err) => {
+  const helper = new hashingHelper();
+  const UserData =  await UserRepo.find({where: {email: Email}}).catch((err) => {
     console.log(err);
-    throw(err);
+    return false;
   });
+
+  return await helper.verifyHash(UserData[0].password, Password);
 }
