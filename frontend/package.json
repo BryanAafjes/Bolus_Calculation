@@ -5,7 +5,10 @@
   "main": "boluscalculation.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chart.js": "^3.2.0",
     "es6-promise": "^4.2.8",
+    "graphology": "^0.19.3",
+    "graphology-types": "^0.19.2",
     "isomorphic-fetch": "^3.0.0",
     "live-server": "^1.2.1",
     "liveserver": "^0.1.20",

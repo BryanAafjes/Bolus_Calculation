@@ -1,17 +1,143 @@
 import { CalculateBolus } from "../Controllers/boluscalculation.js";
 import { api } from "../Controllers/apiController.js";
+//import { Chart } from '/troepen/ttpil2/Philips-S2/frontend/node_modules/chart.js'
+//import * as chartjs from '../../node_modules/chart.js/dist/chart.esm.js'
+import {  
+  Chart,
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip
+
+} from '../../node_modules/chart.js/dist/chart.esm.js'
+
 
 function UpdateFrontendBolusList() {
   (async () => {
     const data = await api.getCalculationFromApi();
     Promise.resolve(data);
     console.log(data[0].carbs);
+    let labels = [];
+    let weights = [];
+    let carbs = [];
+    
+    const grafiekElement = document.getElementById("bolusChart") as HTMLCanvasElement;
+    
+
     document.getElementById("boluslist").innerHTML = "";
     let i = 0;
     data.forEach(function () {
       const date = new Date(data[i].calculationTime).toLocaleString();
-      document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
+       let labels2 = [date]
+       labels = labels.concat(labels2);
+       let weights2 = [data[i].weight];
+       let carbs2 = [data[i].carbs];
+       weights = weights.concat(weights2);
+       carbs = carbs.concat(carbs2);
+       //document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
       i++;
+    });
+    const grafiekData = {
+       labels: labels,
+       datasets: [{
+        data:carbs,
+        fill: true,
+        borderColor: 'rgb(52, 235, 158)',
+        backgroundColor: 'rgb(52, 235, 158)',        
+        label: 'carbs'
+       },{
+         data:weights,
+         fill: true,
+         borderColor: 'rgb(245, 0, 37)',
+         backgroundColor: 'rgb(245, 108, 108)',        
+         label: 'weight',       
+         
+       }]
+       
+       
+    };
+    Chart.register(
+      ArcElement,
+      LineElement,
+      BarElement,
+      PointElement,
+      BarController,
+      BubbleController,
+      DoughnutController,
+      LineController,
+      PieController,
+      PolarAreaController,
+      RadarController,
+      ScatterController,
+      CategoryScale,
+      LinearScale,
+      LogarithmicScale,
+      RadialLinearScale,
+      TimeScale,
+      TimeSeriesScale,
+      Decimation,
+      Filler,
+      Legend,
+      Title,
+      Tooltip
+    );
+    const grafiek = new Chart(grafiekElement, {
+      
+      type: 'bar',
+      data: grafiekData,
+      options: {
+        scales: {           
+            yAxes: {
+                stacked: false,
+                Ticks: {
+                  mirror: true,
+                  
+                },
+                
+                
+            },
+            xAxes: {
+                stacked: false,
+                Ticks: {
+                  mirror: true
+                },
+                title: {
+                  display: true,
+                  text: 'Time of calculation',
+                  color: '#000000',
+                  font: {
+                    family: 'sans-serif',
+                    size: 20,
+                    style: 'normal',
+                    lineHeight: 1.2
+                  },
+                  padding: {top: 30, left: 0, right: 0, bottom: 0}
+                }             
+            }
+        }
+    },
+    
+    
+      
     });
   })();
 }
