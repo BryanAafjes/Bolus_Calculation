@@ -35,7 +35,7 @@ export class User {
         });
 
         let result = await response.text();
-        
+
         return result == "true";
     }
 }
