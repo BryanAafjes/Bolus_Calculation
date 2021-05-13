@@ -1,4 +1,4 @@
-import { RegisterUser } from "../../js/Controllers/userController.js";
+import { User } from "../../js/Controllers/userController.js";
 
 function checkPassword() {
     return (<HTMLInputElement>document.getElementById("password")).value == (<HTMLInputElement>document.getElementById("passwordRepeat")).value;
@@ -13,7 +13,7 @@ form.onsubmit = () => {
         const password = formData.get("password").toString(); // Password validation/Hashing
         /*if(email.match("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b") && username.match("/^[^(|\\]~@0-9!%^&*=};:?><’)]*$/") && password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*d).{8,15}")   die andere )*/
         /*{*/
-            RegisterUser.CreateNewUser(username, email, password, "Patient" /* Role van iets */);
+            User.CreateNewUser(username, email, password, "Patient" /* Role van iets */);
         alert("Account aangemaakt!");
 
         /*}*/

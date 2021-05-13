@@ -25,8 +25,8 @@ export const create = async (newItem: UserItem): Promise<UserItem> => {
     return newItem;
 };
 
-export const selectUsers = async() => {
-    return await SelectUser().catch(error => {
+export const selectUsers = async(newItem: UserItem) => {
+    return await SelectUser(newItem.email, newItem.password).catch(error => {
         console.log(error);
         throw(error)
       });

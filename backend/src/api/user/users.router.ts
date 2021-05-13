@@ -14,10 +14,11 @@
  * Controller Definitions
  */
 
-//GET calculations
-userRouter.get("/getUser", async (req: Request, res: Response) => {
+//get user credentials
+userRouter.post("/loginuser", async (req: Request, res: Response) => {
   try {
-    const something = await ItemService.selectUsers();
+    const item: UserItem = req.body;
+    const something = await ItemService.selectUsers(item);
 
     res.status(201).json(something);
   } catch (e) {
@@ -25,7 +26,7 @@ userRouter.get("/getUser", async (req: Request, res: Response) => {
   }
 });
 
-// POST calculations
+// POST user
 userRouter.post("/adduser", async (req: Request, res: Response) => {
     try {
       const item: UserItem = req.body;
