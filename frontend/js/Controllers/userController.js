@@ -39,7 +39,7 @@ var User = /** @class */ (function () {
     }
     User.CreateNewUser = function (username, email, password, userRole) {
         return __awaiter(this, void 0, void 0, function () {
-            var creationDate, updatedDate, json, myHeaders, response;
+            var creationDate, updatedDate, json, myHeaders, response, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -50,14 +50,29 @@ var User = /** @class */ (function () {
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("Connection", "keep-alive");
                         myHeaders.append("timeout", "5000");
+                        myHeaders.append("Accept", "*/*");
+                        event.preventDefault();
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
                         return [4 /*yield*/, fetch("http://localhost:8000/api/adduser", {
                                 method: 'POST',
                                 headers: myHeaders,
                                 body: json
-                            })];
-                    case 1:
+                            }).then(function (result) { if (result.status == 201) {
+                                alert("User created");
+                            }
+                            else {
+                                alert("User already exists");
+                            } })];
+                    case 2:
                         response = _a.sent();
-                        return [2 /*return*/, response.ok];
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _a.sent();
+                        console.log(error_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

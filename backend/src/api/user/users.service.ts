@@ -18,9 +18,10 @@
  });
 
 export const create = async (newItem: UserItem): Promise<Boolean> => {
-    let output = await connection.then(async connection => {
-        output = await UserFunction(newItem.username, newItem.email, newItem.password, newItem.role, newItem.created_at, newItem.updated_at).catch(_=>{return false;});
-    }).catch(_=>{return false;}).finally(_=>{return true;});
+  let output = true;
+  await connection.then(async connection => {
+        output = await UserFunction(newItem.username, newItem.email, newItem.password, newItem.role, newItem.created_at, newItem.updated_at);
+    }).catch(err => console.log(err));
     return output;
   };
 
