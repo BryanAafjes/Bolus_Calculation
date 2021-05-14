@@ -13,7 +13,7 @@ export const UserFunction = async (Username, Email, Password, Role, Created, Upd
   if(await SelectUser(Email) != null)
   {
     console.log("Duplicate entry for email");
-    throw new Error("Duplicate entry for email");
+    return false;
   }
 
   const UserData = UserRepo.create({username: Username, email: Email, password: hashedPassword, role: Role, created_at: Created, updated_at: Updated})
@@ -21,7 +21,7 @@ export const UserFunction = async (Username, Email, Password, Role, Created, Upd
       console.log(err);
   });
   console.log("username: ", UserData.username, "email: ", UserData.email, " password: ", UserData.password, " rol: ",UserData.role, " created: ",UserData.created_at, " updated: ",UserData.updated_at)
-
+  return true;
 }
 
 export const SelectUser = async (Email) : Promise <User> => {

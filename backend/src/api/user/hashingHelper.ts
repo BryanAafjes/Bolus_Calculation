@@ -5,8 +5,10 @@ const saltRounds = 10; // should be 10
 
 export class hashingHelper
 {
+
     async hashPassword (passwordToHash: string)
     {
+        const salt = await bcrypt.genSalt(saltRounds);
         const hashedPassword = await bcrypt.hash(passwordToHash, saltRounds);
         return hashedPassword;
     }

@@ -33,9 +33,9 @@ userRouter.post("/adduser", async (req: Request, res: Response) => {
       const newItem = await ItemService.create(item);
       console.log(newItem);
       if(!newItem) {
-        res.status(500).send();
+        res.status(500).send("User already exists");
       } else {
-        res.status(201).json(newItem);
+        res.status(201).json(item);
       }
     } catch (e) {
       res.status(500).send(e.message);
