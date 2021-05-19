@@ -1,4 +1,5 @@
 import { User } from "../../js/Controllers/userController.js";
+var date = new Date();
 var form = document.querySelector("#loginForm");
 form.onsubmit = function (event) {
     var formData = new FormData(form);
@@ -12,6 +13,10 @@ form.onsubmit = function (event) {
     succeeded.then(function (result) {
         if (result) {
             alert("Login succesfull!");
+            // Set it expire in 7 days
+            date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+            // Set it
+            document.cookie = "email= " + email + "; expires=" + date.toUTCString() + "; path=/";
         }
         else {
             alert("Username or password incorrect!");
