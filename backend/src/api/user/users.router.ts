@@ -4,6 +4,7 @@
  import express, { Request, Response } from "express";
  import * as ItemService from "./users.service";
  import { UserItem, Item } from "./user.interface";
+
 /**
  * Router Definition
  */
@@ -18,9 +19,8 @@
 userRouter.post("/loginuser", async (req: Request, res: Response) => {
   try {
     const item: UserItem = req.body;
-    const something = await ItemService.selectUsers(item);
-
-    res.status(201).json(something);
+    const user = await ItemService.LoginUser(item);
+    res.status(201).json(user);
   } catch (e) {
     res.status(500).send(e.message);
   }
@@ -30,9 +30,13 @@ userRouter.post("/loginuser", async (req: Request, res: Response) => {
 userRouter.post("/adduser", async (req: Request, res: Response) => {
     try {
       const item: UserItem = req.body;
-      const newItem = ItemService.create(item);
-
-      res.status(201).json(newItem);
+      const newItem = await ItemService.create(item);
+      console.log(newItem);
+      if(!newItem) {
+        res.status(500).send("User already exists");
+      } else {
+        res.status(201).json(item);
+      }
     } catch (e) {
       res.status(500).send(e.message);
     }

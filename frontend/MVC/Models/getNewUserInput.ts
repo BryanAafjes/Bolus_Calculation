@@ -13,9 +13,7 @@ form.onsubmit = () => {
         const password = formData.get("password").toString(); // Password validation/Hashing
         /*if(email.match("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b") && username.match("/^[^(|\\]~@0-9!%^&*=};:?><’)]*$/") && password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*d).{8,15}")   die andere )*/
         /*{*/
-            User.CreateNewUser(username, email, password, "Patient" /* Role van iets */);
-        alert("Account aangemaakt!");
-
+        User.CreateNewUser(username, email, password, "Patient");
         /*}*/
     } else {
         return false;
