@@ -71,13 +71,13 @@ function UpdateFrontendBolusList() {
                         labels: labels,
                         datasets: [{
                                 data: carbs,
-                                fill: true,
+                                fill: false,
                                 borderColor: 'rgb(52, 235, 158)',
                                 backgroundColor: 'rgb(52, 235, 158)',
                                 label: 'carbs'
                             }, {
                                 data: weights,
-                                fill: true,
+                                fill: false,
                                 borderColor: 'rgb(245, 0, 37)',
                                 backgroundColor: 'rgb(245, 108, 108)',
                                 label: 'weight',
@@ -85,7 +85,7 @@ function UpdateFrontendBolusList() {
                     };
                     Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip);
                     grafiek = new Chart(grafiekElement, {
-                        type: 'bar',
+                        type: 'line',
                         data: grafiekData,
                         options: {
                             scales: {
