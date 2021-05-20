@@ -36,10 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { CalculateBolus } from "../Controllers/boluscalculation.js";
 import { api } from "../Controllers/apiController.js";
+//import { Chart } from '/troepen/ttpil2/Philips-S2/frontend/node_modules/chart.js'
+//import * as chartjs from '../../node_modules/chart.js/dist/chart.esm.js'
+import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip } from '../../node_modules/chart.js/dist/chart.esm.js';
 function UpdateFrontendBolusList() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var data, i;
+        var data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, api.getCalculationFromApi()];
@@ -47,12 +50,71 @@ function UpdateFrontendBolusList() {
                     data = _a.sent();
                     Promise.resolve(data);
                     console.log(data[0].carbs);
+                    labels = [];
+                    weights = [];
+                    carbs = [];
+                    grafiekElement = document.getElementById("bolusChart");
                     document.getElementById("boluslist").innerHTML = "";
                     i = 0;
                     data.forEach(function () {
                         var date = new Date(data[i].calculationTime).toLocaleString();
-                        document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
+                        var labels2 = [date];
+                        labels = labels.concat(labels2);
+                        var weights2 = [data[i].weight];
+                        var carbs2 = [data[i].carbs];
+                        weights = weights.concat(weights2);
+                        carbs = carbs.concat(carbs2);
+                        //document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
                         i++;
+                    });
+                    grafiekData = {
+                        labels: labels,
+                        datasets: [{
+                                data: carbs,
+                                fill: false,
+                                borderColor: 'rgb(52, 235, 158)',
+                                backgroundColor: 'rgb(52, 235, 158)',
+                                label: 'carbs'
+                            }, {
+                                data: weights,
+                                fill: false,
+                                borderColor: 'rgb(245, 0, 37)',
+                                backgroundColor: 'rgb(245, 108, 108)',
+                                label: 'weight',
+                            }]
+                    };
+                    Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip);
+                    grafiek = new Chart(grafiekElement, {
+                        type: 'line',
+                        data: grafiekData,
+                        options: {
+                            scales: {
+                                yAxes: {
+                                    stacked: false,
+                                    Ticks: {
+                                        mirror: true,
+                                    },
+                                },
+                                xAxes: {
+                                    stacked: false,
+                                    Ticks: {
+                                        mirror: true
+                                    },
+                                    title: {
+                                        display: true,
+                                        text: 'Time of calculation',
+                                        color: '#000000',
+                                        font: {
+                                            family: 'sans-serif',
+                                            size: 20,
+                                            style: 'normal',
+                                            lineHeight: 1.2
+                                        },
+                                        padding: { top: 30, left: 0, right: 0, bottom: 0 }
+                                    }
+                                }
+                            }
+                        },
                     });
                     return [2 /*return*/];
             }
