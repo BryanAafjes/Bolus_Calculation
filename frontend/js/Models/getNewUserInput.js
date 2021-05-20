@@ -6,13 +6,20 @@ var form = document.querySelector("#registerForm");
 form.onsubmit = function () {
     var formData = new FormData(form);
     if (checkPassword()) {
-        var username = formData.get("username").toString(); //  Username validation
-        var email = formData.get("email").toString(); //  Email validation
-        var password = formData.get("password").toString(); // Password validation/Hashing
-        /*if(email.match("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}\b") && username.match("/^[^(|\\]~@0-9!%^&*=};:?><’)]*$/") && password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*d).{8,15}")   die andere )*/
-        /*{*/
-        User.CreateNewUser(username, email, password, "Patient");
-        /*}*/
+        var username = formData.get("username").toString();
+        var email = formData.get("email").toString();
+        var password = formData.get("password").toString();
+        var regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
+        var regexUsername = /[a-zA-Z0-9\.\s]+/g;
+        var regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+        if (regexEmail.test(email) &&
+            regexUsername.test(username) &&
+            regexPassword.test(password)) {
+            User.CreateNewUser(username, email, password, "Patient");
+        }
+        else {
+            alert("Doesnt match regex");
+        }
     }
     else {
         return false;

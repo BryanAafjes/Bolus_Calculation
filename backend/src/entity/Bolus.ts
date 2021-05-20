@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, ManyToOne} from "typeorm";
+import {User} from "./User"
 
 @Entity()
 export class Bolus {
@@ -14,4 +15,7 @@ export class Bolus {
 
     @Column()
     calculationTime: Date;
+
+    @ManyToOne(type => User, user => user.calculations)
+    user: User;
 }

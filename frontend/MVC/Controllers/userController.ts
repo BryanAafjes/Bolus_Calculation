@@ -1,3 +1,5 @@
+import {userModel} from '../Models/userModel';
+
 export class User {
     static async CreateNewUser(username: string, email: string, password: string, userRole: string) {
         const creationDate = new Date().toISOString();
@@ -21,10 +23,9 @@ export class User {
         } catch(error){
             console.log(error);
         }
-
     }
 
-    static async VerifyUser(email:string, password:string) : Promise<Boolean>
+    static async VerifyUser(email:string, password:string) : Promise<userModel>
     {
         const json = JSON.stringify({"email":email, "password":password});
 
@@ -39,8 +40,20 @@ export class User {
             body: json
         });
 
-        let result = await response.text();
-
-        return result == "true";
+        if(response.status == 201) {
+            const data = await response.json().catch(error => console.log(error));
+            let user: userModel = {
+                id: data['id'],
+                email:data['email'],
+                username:data['username'],
+                role:data['role'],
+                created_at:data['created_at'],
+                updated_at:data['updated_at']
+            };
+            console.log(user);
+            return user;
+        } else {
+            throw(new Error('Something went wrong'))
+        }
     }
 }

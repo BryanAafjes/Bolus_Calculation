@@ -22,7 +22,7 @@ userRouter.post("/loginuser", async (req: Request, res: Response) => {
     const user = await ItemService.LoginUser(item);
     res.status(201).json(user);
   } catch (e) {
-    res.status(500).send(e.message);
+    res.status(412).send(e.message);
   }
 });
 
@@ -33,11 +33,11 @@ userRouter.post("/adduser", async (req: Request, res: Response) => {
       const newItem = await ItemService.create(item);
       console.log(newItem);
       if(!newItem) {
-        res.status(500).send("User already exists");
+        res.status(409).send("User already exists");
       } else {
         res.status(201).json(item);
       }
     } catch (e) {
-      res.status(500).send(e.message);
+      res.status(412).send(e.message);
     }
 });
