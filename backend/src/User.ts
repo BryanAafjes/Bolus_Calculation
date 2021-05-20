@@ -26,7 +26,6 @@ export const UserFunction = async (Username, Email, Password, Role, Created, Upd
 
 export const SelectUser = async (Email) : Promise <User> => {
   const UserRepo = getRepository(User);
-  const helper = new hashingHelper();
   const UserData =  await UserRepo.find({where: {email: Email}}).catch((err) => {
     console.log(err);
     return false;
@@ -34,10 +33,13 @@ export const SelectUser = async (Email) : Promise <User> => {
   return UserData[0];
 }
 
-export const VerifyUserLogin = async (email:string, Password:string) : Promise <Boolean> => {
+export const VerifyUserLogin = async (email:string, Password:string) : Promise <User> => {
   const UserRepo = getRepository(User);
   const helper = new hashingHelper();
   const UserData = await SelectUser(email);
-  console.log("jemoeder");
-  return await helper.verifyHash(UserData.password, Password);
+  if(await helper.verifyHash(UserData.password, Password)) {
+    return UserData;
+  } else {
+    throw(new Error('Password doesnt match'));
+  }
 }

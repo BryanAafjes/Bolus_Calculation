@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Bolus } from "./Bolus";
 
 export enum UserRole {PATIENT = "Patient", GP = "Gp"}
 
@@ -22,9 +23,12 @@ export class User {
         enum: ["Patient", "Gp"],
         default: "Patient"
     })
-    role: UserRole/* Idk of die [] erbij moet []*/
+    role: UserRole
     @Column()
     created_at: Date;
     @Column()
     updated_at: Date;
+
+    @OneToMany(type => Bolus, bolus => bolus.user)
+    calculations: Bolus[];
 }
