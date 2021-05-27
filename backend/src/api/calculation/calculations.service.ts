@@ -3,8 +3,8 @@
  */
 
  import "reflect-metadata";
- import {createConnection} from "typeorm";
- import {Bolus2, SelectAllCalculations} from "../../Bolus2";
+import { createConnection } from "typeorm";
+import { Bolus2, SelectAllCalculations, SelectAllCalculationsFromUser } from "../../Bolus2";
  import { BaseItem, Item } from "./calculation.interface";
 
 
@@ -31,3 +31,11 @@ export const selectall = async() => {
         throw(error)
       });
 };
+export const selectallFromUser = async (userId: number) => {
+    return await SelectAllCalculationsFromUser(userId).catch(error => {
+    console.log(error);
+    throw (error)
+});
+};
+
+

@@ -43,14 +43,17 @@ import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController
 function UpdateFrontendBolusList() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
+        var userId, data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, api.getCalculationFromApi()];
+                case 0:
+                    userId = cookieHelper.getCookie("id");
+                    return [4 /*yield*/, api.getCalculationFromApi(Number(userId))];
                 case 1:
                     data = _a.sent();
                     Promise.resolve(data);
-                    console.log(data[0].carbs);
+                    console.log(data);
+                    console.log(data);
                     labels = [];
                     weights = [];
                     carbs = [];
@@ -111,7 +114,12 @@ function UpdateFrontendBolusList() {
                                             style: 'normal',
                                             lineHeight: 1.2
                                         },
-                                        padding: { top: 30, left: 0, right: 0, bottom: 0 }
+                                        padding: {
+                                            top: 30,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0
+                                        }
                                     }
                                 }
                             }

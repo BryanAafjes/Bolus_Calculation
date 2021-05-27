@@ -15,12 +15,23 @@
     <link rel="stylesheet" href="../../css/style.css">
 
     <script>
-        $(function(){
-          $("#navbar").load("../include/navbar.html");
-        });
-        $(function(){
-          $("#footer").load("../include/footer.html");
-        });
+        window.onload = function() {
+          $(function(){
+            $("#navbar").load("../include/navbar.html");
+          });
+          $(function(){
+            $("#footer").load("../include/footer.html");
+          });
+
+          let sessionStorage = window.sessionStorage;
+          let data = sessionStorage.getItem('loggedIn');
+      
+          if(data)
+          {
+              alert("You need to be logged in first before submitting a calculation");
+              sessionStorage.clear();
+          }
+        }
     </script>
 </head>
 <body>

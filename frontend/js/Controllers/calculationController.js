@@ -67,9 +67,9 @@ var api = /** @class */ (function () {
             });
         });
     };
-    api.getCalculationFromApi = function () {
+    api.getCalculationFromApi = function (userID) {
         return __awaiter(this, void 0, void 0, function () {
-            var myHeaders, response, data;
+            var myHeaders, json, response, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -77,9 +77,11 @@ var api = /** @class */ (function () {
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("Connection", "keep-alive");
                         myHeaders.append("timeout", "5000");
+                        json = JSON.stringify({ "id": userID });
                         return [4 /*yield*/, fetch("http://localhost:8000/api/getcalculation", {
-                                method: 'GET',
+                                method: 'POST',
                                 headers: myHeaders,
+                                body: json
                             })];
                     case 1:
                         response = _a.sent();
