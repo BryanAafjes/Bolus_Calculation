@@ -20,8 +20,11 @@
 
         if(cookieHelper.getCookie("id") == null)
         {
+            let sessionStorage = window.sessionStorage;
+            sessionStorage.setItem('loggedIn', 'false');
             location.replace("http://localhost:8181/MVC/Views/index.html");
         }
+        
 
         $(function(){
           $("#navbar").load("../include/navbar.html");
