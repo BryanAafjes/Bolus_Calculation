@@ -70,6 +70,19 @@
                                         <option value="2">GP</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label class="float-left" for="role">Select your personal GP</label>
+                                    <script type="module">
+                                        import { fillGPList } from "../../js/Models/getNewUserInput.js"
+                                        var okta_api_key = (async () => {
+                                            return await fillGPList()
+                                         })();
+                                        alert(okta_api_key);
+                                    </script>
+                                    <select name="gplist" id="gplist">
+
+                                    </select>
+                                </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Register account</button>
                             </form>

@@ -4,6 +4,11 @@ function checkPassword() {
     return ( < HTMLInputElement > document.getElementById("password")).value == ( < HTMLInputElement > document.getElementById("passwordRepeat")).value;
 }
 
+export async function fillGPList(){
+    return await User.getGps();
+    //var selector = <HTMLSelectElement>document.getElementById('gplist');
+}
+
 const form: HTMLFormElement = document.querySelector("#registerForm");
 form.onsubmit = () => {
     const formData = new FormData(form);
