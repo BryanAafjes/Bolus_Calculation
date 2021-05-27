@@ -1,4 +1,4 @@
-export class cookieHelper {  
+export class cookieHelper {
     static setCookie(name: string, val: string) {
         const date = new Date();
         const value = val;
