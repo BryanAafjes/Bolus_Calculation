@@ -115,6 +115,31 @@ var User = /** @class */ (function () {
             });
         });
     };
+    User.getGps = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var myHeaders, response, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("Connection", "keep-alive");
+                        myHeaders.append("timeout", "5000");
+                        return [4 /*yield*/, fetch("http://localhost:8000/api/getgps", {
+                                method: 'GET',
+                                headers: myHeaders,
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json().catch(function (error) { return console.log(error); })];
+                    case 2:
+                        data = _a.sent();
+                        console.log(data);
+                        return [2 /*return*/, data];
+                }
+            });
+        });
+    };
     return User;
 }());
 export { User };

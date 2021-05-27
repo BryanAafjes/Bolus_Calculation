@@ -56,4 +56,19 @@ export class User {
             throw(new Error('Something went wrong'))
         }
     }
+    static async getGps(): Promise<Array<User>>{
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Connection", "keep-alive");
+        myHeaders.append("timeout", "5000");
+
+        const response = await fetch("http://localhost:8000/api/getgps", {
+           method: 'GET',
+           headers: myHeaders,
+        });
+
+        const data = await response.json().catch(error => console.log(error));
+        console.log(data);
+        return data;
+    }
 }
