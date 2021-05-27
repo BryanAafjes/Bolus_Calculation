@@ -2,6 +2,29 @@
 
 In dit project kan je via een liveserver een Bolus Calculatie uitvoeren. Hier kan je je gewicht (voor de gehele dagelijkse intake en basale dosis) en eventuele koolhydraten (in gram) per maaltijd invullen om te berekenen hoeveel units insuline moeten worden ingenomen bij een maaltijd.
 
+## Documentatie
+
+De globale structuur van onze applicatie is opgedeeld in een aantal verschillende lagen. Deze lagen leven bij ons in verschillende Docker Containers (zie begrippen voor extra toelichting over Docker containers).
+Als eerste hebben we natuurlijk de database, hierin wordt de informatie voor onze applicatie opgeslagen. Verder hebben we een API die leeft in onze backend, deze zorgt voor de communicatie tussen de back- en front-end.
+
+### C1: Context diagram
+
+Hieronder de globale context van onze applicatie, hierin staan ook de gebruikers van onze applicatie weergegeven:
+
+![image](https://user-images.githubusercontent.com/74911066/119786359-67dddb80-bed0-11eb-8cde-cff3947e3704.png)
+
+### C2: Context diagram
+
+In het onderstaande diagram is de inhoudelijke globale structuur van onze applicatie te zien:
+
+![image](https://user-images.githubusercontent.com/74911066/119786435-79bf7e80-bed0-11eb-808e-19b102191117.png)
+
+### C3 Context diagram
+
+In het onderstaande diagram is de gedetailleerdere structuur van onze applicatie inhoudelijk te zien:
+
+![image](https://user-images.githubusercontent.com/74911066/119786486-87750400-bed0-11eb-95a9-d2fa7cc4d617.png)
+
 ## Installatie
 
 Als je nog geen [NodeJS](https://nodejs.org/en/download/) op je computer hebt staan, installeer dit dan eerst.
