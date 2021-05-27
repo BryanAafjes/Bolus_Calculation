@@ -4,6 +4,8 @@
  import express, { Request, Response } from "express";
  import * as ItemService from "./calculations.service";
  import { BaseItem, Item } from "./calculation.interface";
+ import {Item as UserItemWithId} from "../user/user.interface";
+
 /**
  * Router Definition
  */
@@ -15,9 +17,13 @@
  */
 
 //GET calculations
-itemsRouter.get("/getcalculation", async (req: Request, res: Response) => {
-  try {
-    const something = await ItemService.selectall();
+itemsRouter.post("/getcalculation", async (req: Request, res: Response) => {
+    try {
+
+        const userItem:UserItemWithId = req.body;
+        console.log(req.body);
+        console.log(userItem.id);// = undefined
+        const something = await ItemService.selectallFromUser(userItem.id);
 
     res.status(201).json(something);
   } catch (e) {
