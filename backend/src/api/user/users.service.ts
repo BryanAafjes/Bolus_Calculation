@@ -4,7 +4,7 @@
 
  import "reflect-metadata";
  import { createConnection } from "typeorm";
- import { UserFunction, SelectUser, VerifyUserLogin } from "../../User";
+ import { UserFunction, SelectUser, VerifyUserLogin, getGps } from "../../User";
  import { UserItem, Item } from "./user.interface";
 
 /**
@@ -32,3 +32,7 @@ export const LoginUser = async(newItem: UserItem): Promise<UserItem> => {
     //   });
     return await VerifyUserLogin(newItem.email, newItem.password);
 };
+
+export const getAllGps = async() => {
+  return await getGps();
+}
