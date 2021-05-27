@@ -1,8 +1,8 @@
 import { calculation } from "../Models/calculation";
 export class api {
-    static async sendCalculationToAPI(weight: number, carbDose: number): Promise < boolean > {
+    static async sendCalculationToAPI(weight: number, carbDose: number, userID: number): Promise < boolean > {
         const date = new Date().toLocaleString();
-        const json = JSON.stringify({"weight":weight,"carbDose":carbDose,"calculationDateTime":date});
+        const json = JSON.stringify({"weight":weight,"carbDose":carbDose,"calculationDateTime":date, "user": {"id": userID }});
 
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");

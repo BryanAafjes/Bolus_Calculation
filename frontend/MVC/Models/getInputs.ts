@@ -1,5 +1,6 @@
-import { CalculateBolus } from "../Controllers/boluscalculation.js";
-import { api } from "../Controllers/apiController.js";
+import { CalculateBolus } from "../Logic/boluscalculation.js";
+import { api } from "../Controllers/calculationController.js";
+import {getCookie} from "../Logic/cookieHelper.js" 
 //import { Chart } from '/troepen/ttpil2/Philips-S2/frontend/node_modules/chart.js'
 //import * as chartjs from '../../node_modules/chart.js/dist/chart.esm.js'
 import {  
@@ -180,7 +181,8 @@ function calculateMealDose(inputValue: string, weightAPI:number, outputDailyDose
       }
       else
       {
-        api.sendCalculationToAPI(weightAPI, parseFloat(inputValue));
+        const userID : number = parseInt(getCookie("id"));
+        api.sendCalculationToAPI(weightAPI, parseFloat(inputValue), userID);
         document.getElementById("carbsDoseNumber").innerHTML = output.toString() + " Units";
       }
     }

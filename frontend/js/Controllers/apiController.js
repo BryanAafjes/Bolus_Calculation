@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var api = /** @class */ (function () {
     function api() {
     }
-    api.sendCalculationToAPI = function (weight, carbDose) {
+    api.sendCalculationToAPI = function (weight, carbDose, userID) {
         return __awaiter(this, void 0, void 0, function () {
             var date, json, myHeaders, response;
             return __generator(this, function (_a) {
