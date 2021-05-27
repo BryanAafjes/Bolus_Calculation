@@ -16,13 +16,11 @@ form.onsubmit = () => {
         const regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
         const regexUsername = /[a-zA-Z0-9\.\s]+/g;
         const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        // if (regexEmail.test(email) &&
-        //     regexUsername.test(username) &&
-        //     regexPassword.test(password))
-        User.CreateNewUser(username, email, password, role.toString());
-        if(true)
+        if (regexEmail.test(email) &&
+            regexUsername.test(username) &&
+            regexPassword.test(password))
         {
-            
+            User.CreateNewUser(username, email, password, role.toString());
         } else {
             alert("Doesnt match regex")
         }
