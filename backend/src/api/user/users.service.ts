@@ -5,7 +5,7 @@
  import "reflect-metadata";
  import { createConnection } from "typeorm";
  import { UserFunction, SelectUser, VerifyUserLogin } from "../../User";
- import { UserItem } from "./user.interface";
+ import { UserItem, Item } from "./user.interface";
 
 /**
  * Service Methods
@@ -25,7 +25,7 @@ export const create = async (newItem: UserItem): Promise<Boolean> => {
     return output;
   };
 
-export const LoginUser = async(newItem: UserItem) => {
+export const LoginUser = async(newItem: UserItem): Promise<UserItem> => {
     // const user = await SelectUser(newItem.email).catch(error => {
     //     console.log(error);
     //     throw(error)

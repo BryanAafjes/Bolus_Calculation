@@ -7,7 +7,8 @@
  import {Bolus2, SelectAllCalculations} from "../../Bolus2";
  import { BaseItem, Item } from "./calculation.interface";
 
-/**
+
+/**\
  * Service Methods
  */
  let connection;
@@ -18,9 +19,8 @@
  });
 
 export const create = async (newItem: BaseItem): Promise<BaseItem> => {
-    //console.log(newItem, "dit is een test");
     connection.then(async connection => {
-        await Bolus2(newItem.weight, newItem.carbDose, newItem.calculationDateTime).catch((err) => {console.log(err);});
+        await Bolus2(newItem.weight, newItem.carbDose, newItem.user.id).catch((err) => {console.log(err);});
     }).catch(error => console.log(error));
     return newItem;
 };
