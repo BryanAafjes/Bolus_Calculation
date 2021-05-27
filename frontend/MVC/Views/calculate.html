@@ -12,6 +12,7 @@
 
     <script>var exports = {};</script>
     <script type="module" src="../../js/Models/getInputs.js"></script>
+    <script type="module" src="../../js/Logic/cookieHelper.js"></script>
     <link rel="stylesheet" href="../../css/style.css">
 
     <script>
@@ -22,6 +23,11 @@
           $("#footer").load("../include/footer.html");
         });
         
+        if(getCookie("id") == null)
+        {
+            window.location.replace("frontend/MVC/Views/index.html");
+        }
+
     </script>
 </head>
 <body>
