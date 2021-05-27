@@ -45,7 +45,8 @@ var User = /** @class */ (function () {
                     case 0:
                         creationDate = new Date().toISOString();
                         updatedDate = new Date().toISOString();
-                        json = JSON.stringify({ "username": username, "email": email, "password": password, "userRole": userRole, "created_at": creationDate, "updated_at": updatedDate });
+                        json = JSON.stringify({ "username": username, "email": email, "password": password, "role": userRole, "created_at": creationDate, "updated_at": updatedDate });
+                        alert(json);
                         myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("Connection", "keep-alive");
