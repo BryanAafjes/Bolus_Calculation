@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import { Bolus } from "./Bolus";
 
 export enum UserRole {PATIENT = "Patient", GP = "Gp"}
@@ -31,4 +31,18 @@ export class User {
 
     @OneToMany(type => Bolus, bolus => bolus.user)
     calculations: Bolus[];
+
+    @ManyToMany(type => User, usr => usr.gprel)
+    @JoinTable({
+        name: "patientGP",
+        joinColumn: {
+            name: "Patient",
+            referencedColumnName: "id"
+        },
+        inverseJoinColumn: {
+            name: "gp",
+            referencedColumnName: "id"
+        }
+    })
+    gprel: User[];
 }
