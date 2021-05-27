@@ -1,6 +1,6 @@
 import { User } from "../../js/Controllers/userController.js";
 import { userModel } from "../../js/Models/userModel.js";
-import {setCookie} from "../Logic/cookieHelper.js"
+import {cookieHelper} from "../Logic/cookieHelper.js"
 
 const date = new Date();
 const form: HTMLFormElement = document.querySelector("#loginForm");
@@ -19,7 +19,7 @@ form.onsubmit = (event) => {
             date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
             // Set it
             console.log(result.id, result.username);
-            setCookie("id", result.id);
+            cookieHelper.setCookie("id", result.id);
         }
     }).catch(_ => alert("Credentials are not filled in or wrong"));
 };

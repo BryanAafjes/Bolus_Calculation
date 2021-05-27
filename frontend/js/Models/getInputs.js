@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { CalculateBolus } from "../Logic/boluscalculation.js";
 import { api } from "../Controllers/calculationController.js";
-import { getCookie } from "../Logic/cookieHelper.js";
+import { cookieHelper } from "../Logic/cookieHelper.js";
 //import { Chart } from '/troepen/ttpil2/Philips-S2/frontend/node_modules/chart.js'
 //import * as chartjs from '../../node_modules/chart.js/dist/chart.esm.js'
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip } from '../../node_modules/chart.js/dist/chart.esm.js';
@@ -156,8 +156,13 @@ function calculateMealDose(inputValue, weightAPI, outputDailyDose) {
                 alert("ERROR: Amount of Carbs must be between 1 and 300 grams!");
             }
             else {
-                var userID = parseInt(getCookie("id"));
-                api.sendCalculationToAPI(weightAPI, parseFloat(inputValue), userID);
+                var userID = parseInt(cookieHelper.getCookie("id"));
+                if (userID != null) {
+                    api.sendCalculationToAPI(weightAPI, parseFloat(inputValue), userID);
+                }
+                else {
+                    console.log("Error! Login First!");
+                }
                 document.getElementById("carbsDoseNumber").innerHTML = output.toString() + " Units";
             }
         }

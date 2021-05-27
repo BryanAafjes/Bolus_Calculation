@@ -15,19 +15,20 @@
     <script type="module" src="../../js/Logic/cookieHelper.js"></script>
     <link rel="stylesheet" href="../../css/style.css">
 
-    <script>
+    <script type="module">
+        import {cookieHelper} from "../../js/Logic/cookieHelper.js"
+
+        if(cookieHelper.getCookie("id") == null)
+        {
+            location.replace("http://localhost:8181/MVC/Views/index.html");
+        }
+
         $(function(){
           $("#navbar").load("../include/navbar.html");
         });
         $(function(){
           $("#footer").load("../include/footer.html");
         });
-        
-        if(getCookie("id") == null)
-        {
-            window.location.replace("frontend/MVC/Views/index.html");
-        }
-
     </script>
 </head>
 <body>
