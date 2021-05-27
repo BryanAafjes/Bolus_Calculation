@@ -5,8 +5,8 @@ export class User {
         const creationDate = new Date().toISOString();
         const updatedDate = new Date().toISOString();
 
-        const json = JSON.stringify({"username":username, "email":email, "password":password, "userRole":userRole, "created_at":creationDate, "updated_at":updatedDate})
-
+        const json = JSON.stringify({"username":username, "email":email, "password":password, "role":userRole, "created_at":creationDate, "updated_at":updatedDate})
+        alert(json);
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Connection", "keep-alive");
