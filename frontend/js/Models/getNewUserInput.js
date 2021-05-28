@@ -61,9 +61,10 @@ form.onsubmit = function () {
         var regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
         var regexUsername = /[a-zA-Z0-9\.\s]+/g;
         var regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        if (regexEmail.test(email) &&
-            regexUsername.test(username) &&
-            regexPassword.test(password)) {
+        // if (regexEmail.test(email) &&
+        //     regexUsername.test(username) &&
+        //     regexPassword.test(password))
+        if (true) {
             User.CreateNewUser(username, email, password, role.toString());
         }
         else {
