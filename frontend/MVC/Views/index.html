@@ -15,55 +15,28 @@
     <link rel="stylesheet" href="../../css/style.css">
 
     <script>
-        $(function(){
-          $("#navbar").load("../include/navbar.html");
-        });
-        $(function(){
-          $("#footer").load("../include/footer.html");
-        });
+        window.onload = function() {
+          $(function(){
+            $("#navbar").load("../include/navbar.html");
+          });
+          $(function(){
+            $("#footer").load("../include/footer.html");
+          });
+
+          let sessionStorage = window.sessionStorage;
+          let data = sessionStorage.getItem('loggedIn');
+      
+          if(data)
+          {
+              alert("You need to be logged in first before submitting a calculation");
+              sessionStorage.clear();
+          }
+        }
     </script>
 </head>
 <body>
     <div id="navbar"></div>
-    <div class="container">
-        <br>
-        <div class="row center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <br>
-                            <h2 class="center">Calculate Daily Insuline Dose (in units):</h2>
-                            <label for="kg">Lichaamsgewicht in kilogram invoeren</label>
-                            <input type="text" class="form-control" id="userWeight" placeholder="In Kg...">
-                            <br>
-                            <button class="btn btn-primary" id="buttonWeight">Submit</button>
-                            <br>
-                            <br>
-                            <h3 id="dailyDoseNumber">... Units</h3>
-                        </div>
-
-                        <br>
-                        <h2>Basal Insuline Dose (in units):</h2>
-                        <h3 id="basalDoseNumber">... Units</h3>
-
-                        <br>
-                        <h2>Calculate Meal Dose (in units):</h2>
-
-                        <div class="form-group">
-                            <label for="kg">Koolhydraten maaltijd in gram invoeren</label>
-                            <input class="form-control" type="text" id="userCarbs" placeholder="In g...">
-                            <br>
-                            <button class="btn btn-primary" id="buttonCarbs">Submit</button>
-                            <br>
-                            <br>
-                            <h3 id="carbsDoseNumber">... Units</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <h1>Hello world</h1>
     <div id="footer"></div>
 </body>
 </html>

@@ -32,3 +32,13 @@ export const SelectAllCalculations = async () => {
     throw (err);
   });
 }
+
+export const SelectAllCalculationsFromUser = async (userID: number) => {
+    const BolusRepo = getRepository(Bolus);
+    const userObject = await SelectUserById(userID);
+
+    return await BolusRepo.find({ where: { user: userObject } }).catch((err) => {
+        console.log(err);
+        throw (err);
+    });
+}

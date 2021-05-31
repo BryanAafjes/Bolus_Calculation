@@ -34,22 +34,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { CalculateBolus } from "../Controllers/boluscalculation.js";
-import { api } from "../Controllers/apiController.js";
+import { CalculateBolus } from "../Logic/boluscalculation.js";
+import { api } from "../Controllers/calculationController.js";
+import { cookieHelper } from "../Logic/cookieHelper.js";
 //import { Chart } from '/troepen/ttpil2/Philips-S2/frontend/node_modules/chart.js'
 //import * as chartjs from '../../node_modules/chart.js/dist/chart.esm.js'
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip } from '../../node_modules/chart.js/dist/chart.esm.js';
 function UpdateFrontendBolusList() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
+        var userId, data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, api.getCalculationFromApi()];
+                case 0:
+                    userId = cookieHelper.getCookie("id");
+                    return [4 /*yield*/, api.getCalculationFromApi(Number(userId))];
                 case 1:
                     data = _a.sent();
                     Promise.resolve(data);
-                    console.log(data[0].carbs);
+                    console.log(data);
+                    console.log(data);
                     labels = [];
                     weights = [];
                     carbs = [];
@@ -110,7 +114,12 @@ function UpdateFrontendBolusList() {
                                             style: 'normal',
                                             lineHeight: 1.2
                                         },
-                                        padding: { top: 30, left: 0, right: 0, bottom: 0 }
+                                        padding: {
+                                            top: 30,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0
+                                        }
                                     }
                                 }
                             }
@@ -155,7 +164,13 @@ function calculateMealDose(inputValue, weightAPI, outputDailyDose) {
                 alert("ERROR: Amount of Carbs must be between 1 and 300 grams!");
             }
             else {
-                api.sendCalculationToAPI(weightAPI, parseFloat(inputValue));
+                var userID = parseInt(cookieHelper.getCookie("id"));
+                if (userID != null) {
+                    api.sendCalculationToAPI(weightAPI, parseFloat(inputValue), userID);
+                }
+                else {
+                    console.log("Error! Login First!");
+                }
                 document.getElementById("carbsDoseNumber").innerHTML = output.toString() + " Units";
             }
         }
