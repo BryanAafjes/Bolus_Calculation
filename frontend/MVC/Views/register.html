@@ -65,16 +65,36 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="float-left" for="role">Select your role</label>
-                                    <select class="form-select" name="role" id="role" aria-label="Default select example">
-                                        <option selected value="1">Patient</option>
+                                    <select class="form-select" name="role" id="role" onchange="updateView()"aria-label="Default select example">
+                                        <option value="0" disabled selected>Choose role</option>
+                                        <option value="1">Patient</option>
                                         <option value="2">GP</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="float-left" for="role">Select your personal GP</label>
+                                    <label class="float-left" name="gplabel" id="gplabel" for="role">Select your personal GP</label>
                                     <select name="gplist" id="gplist" class="form-select">
-
+                                        <option disabled selected>Choose GP</option>
                                     </select>
+
+                                    <script>
+                                        updateView();
+                                        function updateView()
+                                        {
+                                            var role = document.getElementById("role").value;
+                                            if(role == "1")
+                                            {
+                                                document.getElementById("gplist").style.display = "inline";
+                                                document.getElementById("gplabel").style.display = "inline";
+                                            }
+                                            else
+                                            {
+                                                document.getElementById("gplist").style.display = "none";
+                                                document.getElementById("gplabel").style.display = "none";
+                                            }
+                                        }
+                                   </script>
+
                                     <script type="module">
                                         import { fillGPList } from "../../js/Models/getNewUserInput.js"
                                         var okta_api_key = (async () => {

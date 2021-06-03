@@ -86,18 +86,17 @@ function displayUserOfChatBox()
       const data = await User.GetUserInfo(userId);
 
       Promise.resolve(data);
-      document.getElementById("chatboxUserTitle").innerHTML = "Ingelogd als: " + data.username;
+      document.getElementById("chatboxUserTitle").innerHTML = "Signed in as: " + data.username;
     })();
 
 }
 function UpdateChatMessagesList(message: string)
 {
     const dateOfMessage = new Date(Date.now()).toLocaleString();
-    document.getElementById("messageList").insertAdjacentHTML("beforeend", "<b>" + message + "</b>" + "<br>" + " geplaatst op: " + dateOfMessage + "<br>" + "<br>");
+    document.getElementById("messageList").insertAdjacentHTML("beforeend", "<b>" + message + "</b>" + "<br>" + " Posted at: " + dateOfMessage + "<br>" + "<br>");
 }
 
 const s = io('http://localhost:8000')
-
 
     s.on('connect', () => {
       cookieUserConnected();
@@ -106,7 +105,6 @@ const s = io('http://localhost:8000')
     s.on('disconnect', () => {
       cookieUserDisconnected();
    })
-
 
     s.on('recieve-message', message => {
       UpdateChatMessagesList(message);

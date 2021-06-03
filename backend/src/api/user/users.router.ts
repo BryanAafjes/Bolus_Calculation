@@ -42,6 +42,7 @@ userRouter.post("/adduser", async (req: Request, res: Response) => {
       res.status(412).send(e.message);
     }
 });
+
 // Get all GPs
 userRouter.get("/getgps", async(req: Request, res: Response) =>{
   const users = await ItemService.getAllGps();
@@ -56,4 +57,10 @@ userRouter.post("/selectuser", async (req: Request, res: Response) => {
   } catch (e) {
     res.status(412).send(e.message);
   }
+});
+
+userRouter.post("/getpatientsfromgp", async(req: Request, res: Response) => {
+  const item: Item = req.body;
+  const users = await ItemService.selectUsersFromGP(item);
+  res.status(201).json(users);
 });

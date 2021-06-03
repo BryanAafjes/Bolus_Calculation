@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients</title>
+    <!-- CSS only -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!--SCRIPTS-->
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+
+    <script>var exports = {};</script>
+    <script type="module" src="../../js/Logic/cookieHelper.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script>
+        $(function(){
+          $("#navbar").load("../include/navbar.html");
+        });
+        $(function(){
+          $("#footer").load("../include/footer.html");
+        });
+    </script>
+</head>
+<body>
+    <div id="navbar"></div>
+    <div class="container">
+        <h1 class="display-4 center">Patients</h1>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-responsive" id="patientTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Patient name</th>
+                            <th scope="col">Patient e-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script type="module">
+        import {getPatientsList} from "../../js/Models/getPatientsGp.js"
+        let asyncFunc = (async () => {
+            console.log("function is running");
+            let output = await getPatientsList();
+            let tbody = document.getElementById("patientTable").getElementsByTagName("tbody")[0];
+            output.forEach(patient => {
+                let row = tbody.insertRow();
+                let idCell = row.insertCell(0);
+                let nameCell = row.insertCell(1);
+                let emailCell = row.insertCell(2);
+
+                idCell.innerHTML = patient.id;
+                nameCell.innerHTML = patient.username;
+                emailCell.innerHTML = patient.email;
+            });
+        })();
+    </script>
+</body>
+</html>

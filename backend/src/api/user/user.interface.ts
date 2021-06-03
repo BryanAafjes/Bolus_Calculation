@@ -1,5 +1,5 @@
 import { EntityColumnNotFound } from "typeorm";
-import { UserRole } from "../../entity/User";
+import { User, UserRole } from "../../entity/User";
 import { Bolus } from "../../entity/Bolus";
 
 export interface UserItem {
@@ -10,6 +10,7 @@ export interface UserItem {
   created_at: Date;
   updated_at: Date;
   calculations: Bolus[];
+  gp: User;
 }
 
 export interface Item extends UserItem {

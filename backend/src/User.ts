@@ -2,7 +2,7 @@ import { Connection, getRepository } from "typeorm"
 import { User } from "./entity/User"
 import { hashingHelper } from "./api/user/hashingHelper"
 
-export const UserFunction = async (Username, Email, Password, Role, Created, Updated) => {
+export const UserFunction = async (Username, Email, Password, Role, Created, Updated, gpId) => {
   const UserRepo = getRepository(User);
   const helper = new hashingHelper();
   Created = new Date().toISOString();
@@ -16,7 +16,11 @@ export const UserFunction = async (Username, Email, Password, Role, Created, Upd
     return false;
   }
 
-  const UserData = UserRepo.create({username: Username, email: Email, password: hashedPassword, role: Role, created_at: Created, updated_at: Updated})
+  let gp: any = await UserRepo.find({where: {id: gpId}}).catch((err) => {
+    console.log(err)
+  });
+
+  let UserData = await UserRepo.create({username: Username, email: Email, password: hashedPassword, role: Role, created_at: Created, updated_at: Updated, gp: gp[0]})
   await UserRepo.save(UserData).catch((err) => {
       console.log(err);
   });
@@ -43,6 +47,7 @@ export const VerifyUserLogin = async (email:string, Password:string) : Promise <
     throw(new Error('Password doesnt match'));
   }
 }
+
 export const getGps = async () => {
   const UserRepo = getRepository(User);
   const UserData =  await UserRepo.find({where: {role: "GP"}}).catch((err) => {
@@ -59,4 +64,12 @@ export const SelectUserById = async (Id: number) : Promise <User> => {
 
   });
   return UserData[0];
+}
+
+export const SelectUsersFromGp = async (gpId: number) : Promise <User[]> => {
+  const UserRepo = getRepository(User);
+  const UserData: any =  await UserRepo.find({where: {role: "Patient", gp: gpId}}).catch((err) => {
+    console.log(err);
+  });
+  return UserData;
 }

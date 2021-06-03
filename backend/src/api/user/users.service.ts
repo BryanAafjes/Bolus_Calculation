@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { UserFunction, SelectUser, VerifyUserLogin, getGps, SelectUserById } from "../../User";
+import { UserFunction, SelectUser, VerifyUserLogin, getGps, SelectUserById, SelectUsersFromGp } from "../../User";
 import { UserItem, Item } from "./user.interface";
 
 /* Service Methods*/
@@ -15,7 +15,7 @@ connection = createConnection().catch(() => {
 export const create = async (newItem: UserItem): Promise<Boolean> => {
  let output = true;
  await connection.then(async connection => {
-       output = await UserFunction(newItem.username, newItem.email, newItem.password, newItem.role, newItem.created_at, newItem.updated_at);
+       output = await UserFunction(newItem.username, newItem.email, newItem.password, newItem.role, newItem.created_at, newItem.updated_at, newItem.gp);
    }).catch(err => console.log(err));
    return output;
  };
@@ -39,3 +39,7 @@ export const selectUserWithId = async(newItem: Item): Promise<UserItem> => {
   //   });
   return await SelectUserById(newItem.id);
 };
+
+export const selectUsersFromGP = async(newItem: Item) => {
+  return await SelectUsersFromGp(newItem.id);
+}

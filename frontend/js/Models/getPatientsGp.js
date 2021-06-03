@@ -35,46 +35,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { User } from "../../js/Controllers/userController.js";
-import { Roles } from "../../js/Models/roles.js";
-function checkPassword() {
-    return document.getElementById("password").value == document.getElementById("passwordRepeat").value;
-}
-export function fillGPList() {
+import { cookieHelper } from "../../js/Logic/cookieHelper.js";
+if (cookieHelper.getCookie("id") == null) { }
+;
+export function getPatientsList() {
     return __awaiter(this, void 0, void 0, function () {
+        var gpId;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, User.getGps()];
+                case 0:
+                    if (!(gpId = cookieHelper.getCookie("id") != null)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, User.GetPatientsFromGp(gpId)];
                 case 1: return [2 /*return*/, _a.sent()];
+                case 2: return [2 /*return*/];
             }
         });
     });
 }
-var form = document.querySelector("#registerForm");
-form.onsubmit = function () {
-    var formData = new FormData(form);
-    if (checkPassword()) {
-        var username = formData.get("username").toString();
-        var email = formData.get("email").toString();
-        var password = formData.get("password").toString();
-        var role = Roles[formData.get("role")];
-        var gpId = void 0;
-        if (role == Roles[1]) {
-            gpId = formData.get("gplist").toString();
-        }
-        var regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
-        var regexUsername = /[a-zA-Z0-9\.\s]+/g;
-        var regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        if (regexEmail.test(email) &&
-            regexUsername.test(username) &&
-            regexPassword.test(password)) {
-            User.CreateNewUser(username, email, password, role.toString(), gpId);
-        }
-        else {
-            alert("Doesnt match regex");
-        }
-    }
-    else {
-        alert("Passwords didn't match");
-        return false;
-    }
-};
