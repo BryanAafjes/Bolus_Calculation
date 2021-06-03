@@ -37,14 +37,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var api = /** @class */ (function () {
     function api() {
     }
-    api.sendCalculationToAPI = function (weight, carbDose, userID) {
+    api.sendCalculationToAPI = function (weight, dailyDoseNumber, basalDoseNumber, carbDose, carbsDoseNumber, userID) {
         return __awaiter(this, void 0, void 0, function () {
             var date, json, myHeaders, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         date = new Date().toLocaleString();
-                        json = JSON.stringify({ "weight": weight, "carbDose": carbDose, "calculationDateTime": date, "user": { "id": userID } });
+                        json = JSON.stringify({ "weight": weight, "dailyDoseNumber": dailyDoseNumber, "basalDoseNumber": basalDoseNumber, "carbDose": carbDose, "carbsDoseNumber": carbsDoseNumber, "calculationDateTime": date, "user": { "id": userID } });
                         myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("Connection", "keep-alive");

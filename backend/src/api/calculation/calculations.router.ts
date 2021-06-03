@@ -23,7 +23,7 @@ itemsRouter.post("/getcalculation", async (req: Request, res: Response) => {
         const userItem:UserItemWithId = req.body;
         console.log(req.body);
         console.log(userItem.id);// = undefined
-        const something = await ItemService.selectallFromUser(userItem.id);      
+        const something = await ItemService.selectallFromUser(userItem.id);
 
     res.status(201).json(something);
   } catch (e) {

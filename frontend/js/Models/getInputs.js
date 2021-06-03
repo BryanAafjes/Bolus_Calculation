@@ -130,8 +130,9 @@ function UpdateFrontendBolusList() {
         });
     }); })();
 }
+var outputDailyDose;
+var outputBasalDose;
 function changeWeightInput(inputValue) {
-    var outputDailyDose;
     if (inputValue.match(/^[0-9]+$/)) {
         if (inputValue) {
             outputDailyDose = Math.round(CalculateBolus.calculateDailyDose(parseFloat(inputValue)));
@@ -140,10 +141,10 @@ function changeWeightInput(inputValue) {
                 alert("ERROR: Weight must be between 1 and 430 kilograms!");
             }
             else {
-                var outputBaselDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
-                if (outputBaselDose !== 0) {
+                outputBasalDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
+                if (outputBasalDose !== 0) {
                     document.getElementById("dailyDoseNumber").innerHTML = outputDailyDose.toString() + " Units";
-                    document.getElementById("basalDoseNumber").innerHTML = outputBaselDose.toString() + " Units";
+                    document.getElementById("basalDoseNumber").innerHTML = outputBasalDose.toString() + " Units";
                     return outputDailyDose;
                 }
             }
@@ -156,22 +157,22 @@ function changeWeightInput(inputValue) {
         alert("ERROR: Only enter positive numbers!");
     }
 }
-function calculateMealDose(inputValue, weightAPI, outputDailyDose) {
+function calculateMealDose(inputValue, weightAPI) {
     if (inputValue.match(/^[0-9]+$/)) {
         if (inputValue) {
-            var output = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(inputValue)));
-            if (output == 0) {
+            var carbsDose = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(inputValue)));
+            if (carbsDose == 0) {
                 alert("ERROR: Amount of Carbs must be between 1 and 300 grams!");
             }
             else {
                 var userID = parseInt(cookieHelper.getCookie("id"));
                 if (userID != null) {
-                    api.sendCalculationToAPI(weightAPI, parseFloat(inputValue), userID);
+                    api.sendCalculationToAPI(weightAPI, outputDailyDose, outputBasalDose, parseFloat(inputValue), carbsDose, userID);
                 }
                 else {
                     console.log("Error! Login First!");
                 }
-                document.getElementById("carbsDoseNumber").innerHTML = output.toString() + " Units";
+                document.getElementById("carbsDoseNumber").innerHTML = carbsDose.toString() + " Units";
             }
         }
         else {
@@ -205,7 +206,7 @@ window.addEventListener("load", function () {
         document.getElementById("buttonCarbs").addEventListener("click", function () {
             if (outputDailyDose) {
                 var carbsWeight = (document.getElementById("userCarbs")).value;
-                calculateMealDose(carbsWeight, weightAPI, outputDailyDose);
+                calculateMealDose(carbsWeight, weightAPI);
             }
             else {
                 alert("ERROR: First enter bodyweight!");
