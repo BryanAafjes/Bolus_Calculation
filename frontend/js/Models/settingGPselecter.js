@@ -35,47 +35,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { User } from "../../js/Controllers/userController.js";
-import { Roles } from "../../js/Models/roles.js";
-function checkPassword() {
-    return document.getElementById("password").value == document.getElementById("passwordRepeat").value;
-}
-export function fillGPList() {
-    return __awaiter(this, void 0, void 0, function () {
+import { cookieHelper } from "../Logic/cookieHelper.js";
+var gpList = document.getElementById("gplist");
+function UpdateGPLIST() {
+    var _this = this;
+    (function () { return __awaiter(_this, void 0, void 0, function () {
+        var userId, data, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, User.getGps()];
-                case 1: return [2 /*return*/, _a.sent()];
+                case 0:
+                    userId = cookieHelper.getCookie("id");
+                    return [4 /*yield*/, User.getGps()];
+                case 1:
+                    data = _a.sent();
+                    Promise.resolve(data);
+                    i = 0;
+                    data.forEach(function () {
+                        var gpoption = document.createElement("option");
+                        gpoption.text = data[i].email;
+                        gpList.add(gpoption);
+                        i++;
+                    });
+                    return [2 /*return*/];
             }
         });
-    });
+    }); })();
 }
-var form = document.querySelector("#registerForm");
-form.onsubmit = function () {
-    var formData = new FormData(form);
-    if (checkPassword()) {
-        var username = formData.get("username").toString();
-        var email = formData.get("email").toString();
-        var password = formData.get("password").toString();
-        var role = Roles[formData.get("role")];
-        if (role == Roles[1]) {
-            var personalGP = formData.get("gplist");
-            alert(personalGP);
-        }
-        alert(role.toString());
-        var regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
-        var regexUsername = /[a-zA-Z0-9\.\s]+/g;
-        var regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        // if (regexEmail.test(email) &&
-        //     regexUsername.test(username) &&
-        //     regexPassword.test(password))
-        if (true) {
-            User.CreateNewUser(username, email, password, role.toString());
-        }
-        else {
-            alert("Doesnt match regex");
-        }
-    }
-    else {
-        return false;
-    }
-};
+UpdateGPLIST();

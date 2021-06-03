@@ -1,4 +1,5 @@
 import {userModel} from '../Models/userModel';
+import {cookieHelper} from '../Logic/cookieHelper';
 
 export class User {
     static async CreateNewUser(username: string, email: string, password: string, userRole: string) {

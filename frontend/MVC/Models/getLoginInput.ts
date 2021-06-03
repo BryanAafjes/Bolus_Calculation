@@ -15,6 +15,9 @@ form.onsubmit = (event) => {
     succeeded.then((result) => {
         if (result) {
             alert("Login succesfull!");
+            //delete previous cookie
+            const userId = cookieHelper.getCookie("id");
+            cookieHelper.deleteCookie(userId);
             // Set it expire in 7 days
             date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
             // Set it

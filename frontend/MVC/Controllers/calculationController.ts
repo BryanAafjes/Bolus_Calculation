@@ -41,4 +41,23 @@ export class api {
         console.log(data);
         return data;
     }
+
+    static async getCalculationnFromApi(): Promise<Array<userModel>>{
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Connection", "keep-alive");
+        myHeaders.append("timeout", "5000");
+
+        
+
+        const response = await fetch("http://localhost:8000/api/getgps", {
+           method: 'GET',
+           headers: myHeaders,
+           
+        });
+
+        const data = await response.json().catch(error => console.log(error));
+        console.log(data);
+        return data;
+    }
 }

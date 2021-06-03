@@ -1,5 +1,16 @@
 var liveServer = require("live-server");
+
+const io = require('socket.io')(3000, {
+   cors: {
+       origin: ["http://localhost:8181"],
+   },
+})
 const { fileURLToPath } = require("url");
+
+io.on('connection', socket => {
+    console.log(socket.id)
+    
+})
 
 var params = {
            port: 8181, // Set the server port. Defaults to 8080.
