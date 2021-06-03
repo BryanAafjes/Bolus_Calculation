@@ -1,4 +1,3 @@
-  
 import { User } from "../../js/Controllers/userController.js";
 import { Roles } from "../../js/Models/roles.js";
 function checkPassword() {
@@ -21,22 +20,20 @@ form.onsubmit = () => {
         if(role == Roles[1])
         {
            const personalGP = formData.get("gplist");
-           alert(personalGP); 
         }
-        alert(role.toString());
         const regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
         const regexUsername = /[a-zA-Z0-9\.\s]+/g;
         const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        // if (regexEmail.test(email) &&
-        //     regexUsername.test(username) &&
-        //     regexPassword.test(password))
-        if(true)
+        if (regexEmail.test(email) &&
+            regexUsername.test(username) &&
+            regexPassword.test(password))
         {
             User.CreateNewUser(username, email, password, role.toString());
         } else {
-            alert("Doesnt match regex")
+            alert("Doesnt match regex");
         }
     } else {
+        alert("Passwords didn't match");
         return false;
     }
 };

@@ -59,16 +59,13 @@ form.onsubmit = function () {
         var role = Roles[formData.get("role")];
         if (role == Roles[1]) {
             var personalGP = formData.get("gplist");
-            alert(personalGP);
         }
-        alert(role.toString());
         var regexEmail = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-z]{2,}\b/;
         var regexUsername = /[a-zA-Z0-9\.\s]+/g;
         var regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-        // if (regexEmail.test(email) &&
-        //     regexUsername.test(username) &&
-        //     regexPassword.test(password))
-        if (true) {
+        if (regexEmail.test(email) &&
+            regexUsername.test(username) &&
+            regexPassword.test(password)) {
             User.CreateNewUser(username, email, password, role.toString());
         }
         else {
@@ -76,6 +73,7 @@ form.onsubmit = function () {
         }
     }
     else {
+        alert("Passwords didn't match");
         return false;
     }
 };
