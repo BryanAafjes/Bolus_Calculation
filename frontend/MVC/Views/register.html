@@ -75,8 +75,17 @@
                                     <select name="gplist" id="gplist" class="form-select">
 
                                     </select>
-                                    <script type="module" src="../../js/Models/settingGPselecter.js">
-                                       
+                                    <script type="module">
+                                        import { fillGPList } from "../../js/Models/getNewUserInput.js"
+                                        var okta_api_key = (async () => {
+                                            var output = await fillGPList()
+                                            console.log(output);
+                                            var select = document.getElementById("gplist");
+                                            output.forEach(element => {
+                                                var option = new Option(element.username,element.id);
+                                                select.add(option);
+                                            });
+                                         })();
                                     </script>
                                 </div>
                                 <br>

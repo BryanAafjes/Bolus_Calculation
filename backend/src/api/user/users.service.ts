@@ -3,6 +3,11 @@ import { createConnection } from "typeorm";
 import { UserFunction, SelectUser, VerifyUserLogin, getGps, SelectUserById } from "../../User";
 import { UserItem, Item } from "./user.interface";
 
+ import "reflect-metadata";
+ import { createConnection } from "typeorm";
+ import { UserFunction, SelectUser, VerifyUserLogin, getGps } from "../../User";
+ import { UserItem, Item } from "./user.interface";
+
 /**
 * Service Methods
 */
@@ -30,16 +35,5 @@ export const LoginUser = async(newItem: UserItem): Promise<UserItem> => {
 };
 
 export const getAllGps = async() => {
- return await getGps().catch(error => {
-  console.log(error);
-  throw (error)
-});;
-};
-
-export const selectUserWithId = async(newItem: Item): Promise<UserItem> => {
-  // const user = await SelectUser(newItem.email).catch(error => {
-  //     console.log(error);
-  //     throw(error)
-  //   });
-  return await SelectUserById(newItem.id);
-};
+  return await getGps();
+}

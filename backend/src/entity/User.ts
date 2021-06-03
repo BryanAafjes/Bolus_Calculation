@@ -1,4 +1,3 @@
-  
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import { Bolus } from "./Bolus";
 
