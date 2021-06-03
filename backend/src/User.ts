@@ -43,3 +43,20 @@ export const VerifyUserLogin = async (email:string, Password:string) : Promise <
     throw(new Error('Password doesnt match'));
   }
 }
+export const getGps = async () => {
+  const UserRepo = getRepository(User);
+  const UserData =  await UserRepo.find({where: {role: "GP"}}).catch((err) => {
+    console.log(err);
+    return false;
+  });
+  return UserData;
+}
+
+export const SelectUserById = async (Id: number) : Promise <User> => {
+  const UserRepo = getRepository(User);
+  const UserData =  await UserRepo.find({where: {id: Id}}).catch((err) => {
+    console.log(err);
+    
+  });
+  return UserData[0];
+}

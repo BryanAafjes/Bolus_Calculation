@@ -1,6 +1,7 @@
 <html lang="en">
 
 <head>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,21 @@
     <!--SCRIPTS-->
     <script>var exports = {};</script>
     <script type="module" src="../../js/Models/getInputs.js"></script>
+    <script type="module" src="../../js/Models/getChatInputs.js"></script>
     <script type="module" src="../../js/Logic/cookieHelper.js"></script>
+    
+    
+    
+
+
+    
+ 
+    
+
     <link rel="stylesheet" href="../../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+   
 
     <script type="module">
         import {cookieHelper} from "../../js/Logic/cookieHelper.js"
@@ -37,24 +50,32 @@
 <body>
     <div id="navbar"></div>
     <div class="container">
-        <h1 class="center">Bolus Calculations list</h1>
-        <button class="btn btn-secondary" onclick="location.href='/./MVC/Views/calculate.html'" type="button">Create new calculation</button>
-        <button class="btn btn-secondary" onclick="location.href='/./MVC/Views/chatbox.html'" type="button">Go to the chatbox</button>
-        <br>
+        <h1 class="center" id="chatboxUserTitle">piada test</h1>           
+          
+        </div>                        
+        <br>      
             <div class="row center">
-              <div class="col-md-8">
-                    <div id="buttonbox1">
-                        <center><button class="btn btn-primary" id="buttonCalculationList">View calculations</button></center>
-                    </div>
-                    <br>
-                    <div class="card">
-                        <div id="boluslistbox">
-                            <center><h3 id="boluslist">List is empty now</h3></center>
-                            <canvas id="bolusChart"></canvas>
-                        </div>
-                    </div>
-              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  
+                  
+                  <label for="kg">chat message test</label>
+                  <input class="form-control" type="text" id="userMessage" placeholder="message...">
+                  <br>
+                  <button class="btn btn-primary" id="buttonChatMessage">Submit</button>
+                  <br>
+                  <br>
+                  <h3> Chat berichten </h3>
+                  <p id="messageList"><br></p>
+              </div>                                                                    
             </div>
+            <div class="col-md-1">             
+              <select class="btn btn-mini" id="onlineUserList" multiple aria-label="multiple select example">
+                <option selected>Online users:</option>
+                
+              </select>
+
+            </div>      
     </div>
     <div id="footer"></div>
 </body>

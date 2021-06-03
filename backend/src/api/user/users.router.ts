@@ -41,3 +41,28 @@ userRouter.post("/adduser", async (req: Request, res: Response) => {
       res.status(412).send(e.message);
     }
 });
+
+userRouter.get("/getgps", async(req: Request, res: Response) =>{
+  console.log("kak3");
+  const users = await ItemService.getAllGps();
+  res.status(201).json(users);
+});
+
+userRouter.post("/selectuser", async (req: Request, res: Response) => {
+  try {
+    const item: Item = req.body;
+    const user = await ItemService.selectUserWithId(item);
+    res.status(201).json(user);
+  } catch (e) {
+    res.status(412).send(e.message);
+  }
+});
+
+
+
+
+
+
+
+
+
