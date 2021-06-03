@@ -2,17 +2,18 @@ import {userModel} from '../Models/userModel';
 import {cookieHelper} from '../Logic/cookieHelper';
 
 export class User {
-    static async CreateNewUser(username: string, email: string, password: string, userRole: string) {
+    static async CreateNewUser(username: string, email: string, password: string, userRole: string, gpId: string) {
         const creationDate = new Date().toISOString();
         const updatedDate = new Date().toISOString();
 
-        const json = JSON.stringify({"username":username, "email":email, "password":password, "role":userRole, "created_at":creationDate, "updated_at":updatedDate})
+        const json = JSON.stringify({"username":username, "email":email, "password":password, "role":userRole, "gp": gpId, "created_at":creationDate, "updated_at":updatedDate})
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Connection", "keep-alive");
         myHeaders.append("timeout", "5000");
         myHeaders.append("Accept", "*/*");
         event.preventDefault();
+
         try{
             const response = await fetch("http://localhost:8000/api/adduser", {
                 method: 'POST',
@@ -66,6 +67,25 @@ export class User {
         const response = await fetch("http://localhost:8000/api/getgps", {
            method: 'GET',
            headers: myHeaders,
+        });
+
+        const data = await response.json().catch(error => console.log(error));
+        console.log(data);
+        return data;
+    }
+
+    static async GetPatientsFromGp(id: number): Promise<Array<User>>
+    {
+        const json = JSON.stringify({"id":id});
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Connection", "keep-alive");
+        myHeaders.append("timeout", "5000");
+
+        const response = await fetch("http://localhost:8000/api/getpatientsfromgp", {
+           method: 'POST',
+           headers: myHeaders,
+           body: json
         });
 
         const data = await response.json().catch(error => console.log(error));

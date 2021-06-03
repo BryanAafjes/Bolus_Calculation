@@ -98,7 +98,6 @@ function UpdateChatMessagesList(message: string)
 
 const s = io('http://localhost:8000')
 
-
     s.on('connect', () => {
       cookieUserConnected();
     })
@@ -106,7 +105,6 @@ const s = io('http://localhost:8000')
     s.on('disconnect', () => {
       cookieUserDisconnected();
    })
-
 
     s.on('recieve-message', message => {
       UpdateChatMessagesList(message);

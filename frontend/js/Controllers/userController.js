@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var User = /** @class */ (function () {
     function User() {
     }
-    User.CreateNewUser = function (username, email, password, userRole) {
+    User.CreateNewUser = function (username, email, password, userRole, gpId) {
         return __awaiter(this, void 0, void 0, function () {
             var creationDate, updatedDate, json, myHeaders, response, error_1;
             return __generator(this, function (_a) {
@@ -45,7 +45,7 @@ var User = /** @class */ (function () {
                     case 0:
                         creationDate = new Date().toISOString();
                         updatedDate = new Date().toISOString();
-                        json = JSON.stringify({ "username": username, "email": email, "password": password, "role": userRole, "created_at": creationDate, "updated_at": updatedDate });
+                        json = JSON.stringify({ "username": username, "email": email, "password": password, "role": userRole, "gp": gpId, "created_at": creationDate, "updated_at": updatedDate });
                         myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("Connection", "keep-alive");
@@ -127,6 +127,33 @@ var User = /** @class */ (function () {
                         return [4 /*yield*/, fetch("http://localhost:8000/api/getgps", {
                                 method: 'GET',
                                 headers: myHeaders,
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json().catch(function (error) { return console.log(error); })];
+                    case 2:
+                        data = _a.sent();
+                        console.log(data);
+                        return [2 /*return*/, data];
+                }
+            });
+        });
+    };
+    User.GetPatientsFromGp = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json, myHeaders, response, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = JSON.stringify({ "id": id });
+                        myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("Connection", "keep-alive");
+                        myHeaders.append("timeout", "5000");
+                        return [4 /*yield*/, fetch("http://localhost:8000/api/getpatientsfromgp", {
+                                method: 'POST',
+                                headers: myHeaders,
+                                body: json
                             })];
                     case 1:
                         response = _a.sent();
