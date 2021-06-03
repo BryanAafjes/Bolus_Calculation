@@ -96,14 +96,14 @@ function cookieUserConnected() {
     }); })();
 }
 function displayUser(userName) {
-    //const userId = cookieHelper.getCookie("id");                       
+    //const userId = cookieHelper.getCookie("id");
     var onlineUsersList = document.getElementById("onlineUserList");
     var onlineUser = document.createElement("option");
     onlineUser.text = userName;
     onlineUsersList.add(onlineUser);
 }
 function removeUser(userName) {
-    //const userId = cookieHelper.getCookie("id");    
+    //const userId = cookieHelper.getCookie("id");
     var userList = document.getElementById("onlineUserList");
     var searchString = userName;
     for (var i = 0; i < userList.length; i++) {
@@ -114,7 +114,7 @@ function removeUser(userName) {
     }
     //const gpoption: HTMLOptionElement = document.createElement("option");
     // gpoption.text = data.username;
-    //gpList.add(gpoption);                       
+    //gpList.add(gpoption);
 }
 function displayUserOfChatBox() {
     var _this = this;
