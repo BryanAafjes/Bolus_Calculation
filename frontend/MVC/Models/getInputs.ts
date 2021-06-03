@@ -41,37 +41,33 @@ function UpdateFrontendBolusList() {
     console.log(data);
     let labels = [];
     let weights = [];
-    let carbs = [];
+    let carbsDose = [];
 
     const grafiekElement = document.getElementById("bolusChart") as HTMLCanvasElement;
 
     document.getElementById("boluslist").innerHTML = "";
     let i = 0;
     data.forEach(function () {
-      const date = new Date(data[i].calculationTime).toLocaleString();
-      let labels2 = [date]
-      labels = labels.concat(labels2);
-      let weights2 = [data[i].weight];
-      let carbs2 = [data[i].carbs];
-      weights = weights.concat(weights2);
-      carbs = carbs.concat(carbs2);
+      labels = labels.concat(new Date(data[i].calculationTime).toLocaleString());
+      weights = weights.concat(data[i].weight);
+      carbsDose = carbsDose.concat(data[i].carbsDoseNumber);
       //document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
       i++;
     });
     const grafiekData = {
       labels: labels,
       datasets: [{
-        data: carbs,
+        data: carbsDose,
         fill: false,
         borderColor: 'rgb(52, 235, 158)',
         backgroundColor: 'rgb(52, 235, 158)',
-        label: 'carbs'
+        label: 'Carbdose (in units)'
       }, {
         data: weights,
         fill: false,
         borderColor: 'rgb(245, 0, 37)',
         backgroundColor: 'rgb(245, 108, 108)',
-        label: 'weight',
+        label: 'Weights (in kg)',
 
       }]
 
@@ -223,13 +219,13 @@ window.addEventListener(
 
     if (buttonCarbs) {
       document.getElementById("buttonCarbs").addEventListener("click", function () {
-        if (outputDailyDose) 
+        if (outputDailyDose)
         {
           const carbsWeight = ( < HTMLInputElement > (document.getElementById("userCarbs"))).value;
 
           calculateMealDose(carbsWeight, weightAPI);
-        } 
-        else 
+        }
+        else
         {
           alert("ERROR: First enter bodyweight!");
         }

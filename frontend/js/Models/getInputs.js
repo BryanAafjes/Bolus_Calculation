@@ -43,7 +43,7 @@ import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController
 function UpdateFrontendBolusList() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var userId, data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
+        var userId, data, labels, weights, carbsDose, grafiekElement, i, grafiekData, grafiek;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -56,35 +56,31 @@ function UpdateFrontendBolusList() {
                     console.log(data);
                     labels = [];
                     weights = [];
-                    carbs = [];
+                    carbsDose = [];
                     grafiekElement = document.getElementById("bolusChart");
                     document.getElementById("boluslist").innerHTML = "";
                     i = 0;
                     data.forEach(function () {
-                        var date = new Date(data[i].calculationTime).toLocaleString();
-                        var labels2 = [date];
-                        labels = labels.concat(labels2);
-                        var weights2 = [data[i].weight];
-                        var carbs2 = [data[i].carbs];
-                        weights = weights.concat(weights2);
-                        carbs = carbs.concat(carbs2);
+                        labels = labels.concat(new Date(data[i].calculationTime).toLocaleString());
+                        weights = weights.concat(data[i].weight);
+                        carbsDose = carbsDose.concat(data[i].carbsDoseNumber);
                         //document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
                         i++;
                     });
                     grafiekData = {
                         labels: labels,
                         datasets: [{
-                                data: carbs,
+                                data: carbsDose,
                                 fill: false,
                                 borderColor: 'rgb(52, 235, 158)',
                                 backgroundColor: 'rgb(52, 235, 158)',
-                                label: 'carbs'
+                                label: 'Carbdose (in units)'
                             }, {
                                 data: weights,
                                 fill: false,
                                 borderColor: 'rgb(245, 0, 37)',
                                 backgroundColor: 'rgb(245, 108, 108)',
-                                label: 'weight',
+                                label: 'Weights (in kg)',
                             }]
                     };
                     Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip);
