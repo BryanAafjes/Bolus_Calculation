@@ -51,3 +51,12 @@ export const getGps = async () => {
   });
   return UserData;
 }
+
+export const SelectUserById = async (Id: number) : Promise <User> => {
+  const UserRepo = getRepository(User);
+  const UserData =  await UserRepo.find({where: {id: Id}}).catch((err) => {
+    console.log(err);
+
+  });
+  return UserData[0];
+}

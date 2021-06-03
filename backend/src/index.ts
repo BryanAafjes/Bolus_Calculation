@@ -6,7 +6,6 @@
  import cors from "cors";
  import helmet = require("helmet");
  import http, { Server } from "http";
- 
 
  import { itemsRouter } from "./api/calculation/calculations.router";
  import { userRouter } from "./api/user/users.router";
@@ -18,9 +17,6 @@
  */
  const PORT: number = 8000;
  const app = express();
- 
-  
-
 
 /**
  *  App Configuration
@@ -48,7 +44,6 @@
 
   io.on("connection", socket => {
     console.log(socket.id);
-    console.log("wassup");
     socket.on('send-message', (message) => {
       io.emit('recieve-message', message)
       //console.log(message);

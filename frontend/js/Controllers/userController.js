@@ -140,6 +140,43 @@ var User = /** @class */ (function () {
             });
         });
     };
+    User.GetUserInfo = function (userId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var json, myHeaders, response, data, user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        json = JSON.stringify({ "id": userId });
+                        myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("Connection", "keep-alive");
+                        myHeaders.append("timeout", "5000");
+                        return [4 /*yield*/, fetch("http://localhost:8000/api/selectuser", {
+                                method: 'POST',
+                                headers: myHeaders,
+                                body: json
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        if (!(response.status == 201)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, response.json().catch(function (error) { return console.log(error); })];
+                    case 2:
+                        data = _a.sent();
+                        user = {
+                            id: data['id'],
+                            email: data['email'],
+                            username: data['username'],
+                            role: data['role'],
+                            created_at: data['created_at'],
+                            updated_at: data['updated_at']
+                        };
+                        console.log(user);
+                        return [2 /*return*/, user];
+                    case 3: throw (new Error('Something went wrong'));
+                }
+            });
+        });
+    };
     return User;
 }());
 export { User };
