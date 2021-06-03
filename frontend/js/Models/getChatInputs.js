@@ -129,7 +129,7 @@ function displayUserOfChatBox() {
                 case 1:
                     data = _a.sent();
                     Promise.resolve(data);
-                    document.getElementById("chatboxUserTitle").innerHTML = "Ingelogd als: " + data.username;
+                    document.getElementById("chatboxUserTitle").innerHTML = "Signed in as: " + data.username;
                     return [2 /*return*/];
             }
         });
@@ -137,7 +137,7 @@ function displayUserOfChatBox() {
 }
 function UpdateChatMessagesList(message) {
     var dateOfMessage = new Date(Date.now()).toLocaleString();
-    document.getElementById("messageList").insertAdjacentHTML("beforeend", "<b>" + message + "</b>" + "<br>" + " geplaatst op: " + dateOfMessage + "<br>" + "<br>");
+    document.getElementById("messageList").insertAdjacentHTML("beforeend", "<b>" + message + "</b>" + "<br>" + " Posted at: " + dateOfMessage + "<br>" + "<br>");
 }
 var s = io('http://localhost:8000');
 s.on('connect', function () {
