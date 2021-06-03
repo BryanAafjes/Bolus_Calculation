@@ -129,7 +129,7 @@ function displayUserOfChatBox() {
                 case 1:
                     data = _a.sent();
                     Promise.resolve(data);
-                    document.getElementById("chatboxUserTitle").innerHTML = "ingelogd als: " + data.username;
+                    document.getElementById("chatboxUserTitle").innerHTML = "Ingelogd als: " + data.username;
                     return [2 /*return*/];
             }
         });

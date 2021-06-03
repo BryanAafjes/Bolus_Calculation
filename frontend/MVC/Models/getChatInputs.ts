@@ -86,7 +86,7 @@ function displayUserOfChatBox()
       const data = await User.GetUserInfo(userId);
 
       Promise.resolve(data);
-      document.getElementById("chatboxUserTitle").innerHTML = "ingelogd als: " + data.username;
+      document.getElementById("chatboxUserTitle").innerHTML = "Ingelogd als: " + data.username;
     })();
 
 }

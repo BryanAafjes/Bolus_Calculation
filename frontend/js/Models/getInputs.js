@@ -43,7 +43,7 @@ import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController
 function UpdateFrontendBolusList() {
     var _this = this;
     (function () { return __awaiter(_this, void 0, void 0, function () {
-        var userId, data, labels, weights, carbs, grafiekElement, i, grafiekData, grafiek;
+        var userId, data, labels, weights, carbsDose, grafiekElement, i, grafiekData, grafiek;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -56,35 +56,31 @@ function UpdateFrontendBolusList() {
                     console.log(data);
                     labels = [];
                     weights = [];
-                    carbs = [];
+                    carbsDose = [];
                     grafiekElement = document.getElementById("bolusChart");
                     document.getElementById("boluslist").innerHTML = "";
                     i = 0;
                     data.forEach(function () {
-                        var date = new Date(data[i].calculationTime).toLocaleString();
-                        var labels2 = [date];
-                        labels = labels.concat(labels2);
-                        var weights2 = [data[i].weight];
-                        var carbs2 = [data[i].carbs];
-                        weights = weights.concat(weights2);
-                        carbs = carbs.concat(carbs2);
+                        labels = labels.concat(new Date(data[i].calculationTime).toLocaleString());
+                        weights = weights.concat(data[i].weight);
+                        carbsDose = carbsDose.concat(data[i].carbsDoseNumber);
                         //document.getElementById("boluslist").insertAdjacentHTML("beforeend", "ID: " + data[i].id + " Weight: " + data[i].weight + " Carb Dose: " + data[i].carbs + " Calculation Time: " + date + "<br>" + "<br>");
                         i++;
                     });
                     grafiekData = {
                         labels: labels,
                         datasets: [{
-                                data: carbs,
+                                data: carbsDose,
                                 fill: false,
                                 borderColor: 'rgb(52, 235, 158)',
                                 backgroundColor: 'rgb(52, 235, 158)',
-                                label: 'carbs'
+                                label: 'Carbdose (in units)'
                             }, {
                                 data: weights,
                                 fill: false,
                                 borderColor: 'rgb(245, 0, 37)',
                                 backgroundColor: 'rgb(245, 108, 108)',
-                                label: 'weight',
+                                label: 'Weights (in kg)',
                             }]
                     };
                     Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip);
@@ -130,8 +126,9 @@ function UpdateFrontendBolusList() {
         });
     }); })();
 }
+var outputDailyDose;
+var outputBasalDose;
 function changeWeightInput(inputValue) {
-    var outputDailyDose;
     if (inputValue.match(/^[0-9]+$/)) {
         if (inputValue) {
             outputDailyDose = Math.round(CalculateBolus.calculateDailyDose(parseFloat(inputValue)));
@@ -140,10 +137,10 @@ function changeWeightInput(inputValue) {
                 alert("ERROR: Weight must be between 1 and 430 kilograms!");
             }
             else {
-                var outputBaselDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
-                if (outputBaselDose !== 0) {
+                outputBasalDose = Math.round(CalculateBolus.calculateBasalDose(outputDailyDose));
+                if (outputBasalDose !== 0) {
                     document.getElementById("dailyDoseNumber").innerHTML = outputDailyDose.toString() + " Units";
-                    document.getElementById("basalDoseNumber").innerHTML = outputBaselDose.toString() + " Units";
+                    document.getElementById("basalDoseNumber").innerHTML = outputBasalDose.toString() + " Units";
                     return outputDailyDose;
                 }
             }
@@ -156,22 +153,22 @@ function changeWeightInput(inputValue) {
         alert("ERROR: Only enter positive numbers!");
     }
 }
-function calculateMealDose(inputValue, weightAPI, outputDailyDose) {
+function calculateMealDose(inputValue, weightAPI) {
     if (inputValue.match(/^[0-9]+$/)) {
         if (inputValue) {
-            var output = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(inputValue)));
-            if (output == 0) {
+            var carbsDose = Math.round(CalculateBolus.calculateIntakeMeal(outputDailyDose, parseFloat(inputValue)));
+            if (carbsDose == 0) {
                 alert("ERROR: Amount of Carbs must be between 1 and 300 grams!");
             }
             else {
                 var userID = parseInt(cookieHelper.getCookie("id"));
                 if (userID != null) {
-                    api.sendCalculationToAPI(weightAPI, parseFloat(inputValue), userID);
+                    api.sendCalculationToAPI(weightAPI, outputDailyDose, outputBasalDose, parseFloat(inputValue), carbsDose, userID);
                 }
                 else {
                     console.log("Error! Login First!");
                 }
-                document.getElementById("carbsDoseNumber").innerHTML = output.toString() + " Units";
+                document.getElementById("carbsDoseNumber").innerHTML = carbsDose.toString() + " Units";
             }
         }
         else {
@@ -205,7 +202,7 @@ window.addEventListener("load", function () {
         document.getElementById("buttonCarbs").addEventListener("click", function () {
             if (outputDailyDose) {
                 var carbsWeight = (document.getElementById("userCarbs")).value;
-                calculateMealDose(carbsWeight, weightAPI, outputDailyDose);
+                calculateMealDose(carbsWeight, weightAPI);
             }
             else {
                 alert("ERROR: First enter bodyweight!");

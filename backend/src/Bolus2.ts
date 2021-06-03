@@ -2,12 +2,12 @@ import { Connection, getRepository } from "typeorm"
 import { Bolus } from "./entity/Bolus"
 import { User } from "./entity/User"
 
-export const Bolus2 = async (Weight: string, Carbs: string, userID: number) => {
+export const Bolus2 = async (Weight: string, DailyDoseNumber: string, BasalDoseNumber: string, Carbs: string, CarbsDoseNumber: string, userID: number) => {
   const BolusRepo = getRepository(Bolus);
 
   let CalculationTime = new Date().toISOString();
   const userObject = await SelectUserById(userID);
-  const bolus = BolusRepo.create({ weight: Weight, carbs: Carbs, calculationTime: CalculationTime, user: userObject })
+  const bolus = BolusRepo.create({ weight: Weight, dailyDoseNumber: DailyDoseNumber, basalDoseNumber:BasalDoseNumber, carbs: Carbs, carbsDoseNumber:CarbsDoseNumber, calculationTime: CalculationTime, user: userObject })
 
   await BolusRepo.save(bolus).catch((err) => {
     console.log(err);

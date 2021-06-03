@@ -11,7 +11,16 @@ export class Bolus {
     weight: string;
 
     @Column()
+    dailyDoseNumber: string;
+
+    @Column()
+    basalDoseNumber: string;
+
+    @Column()
     carbs: string;
+
+    @Column()
+    carbsDoseNumber: string;
 
     @Column()
     calculationTime: Date;

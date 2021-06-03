@@ -1,25 +1,27 @@
 <html lang="en">
 
 <head>
-    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolus Calculations list</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <!--SCRIPTS-->
-    <script>var exports = {};</script>
-    <script type="module" src="../../js/Models/getInputs.js"></script>
-    <script type="module" src="../../js/Models/getChatInputs.js"></script>
-    <script type="module" src="../../js/Logic/cookieHelper.js"></script>
+  <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolus Calculations list</title>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <!--SCRIPTS-->
+  <script>
+    var exports = {};
+  </script>
+  <script type="module" src="../../js/Models/getInputs.js"></script>
+  <script type="module" src="../../js/Models/getChatInputs.js"></script>
+  <script type="module" src="../../js/Logic/cookieHelper.js"></script>
 
-    <link rel="stylesheet" href="../../css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type="module">
-        import {cookieHelper} from "../../js/Logic/cookieHelper.js"
+  <script type="module">
+    import {cookieHelper} from "../../js/Logic/cookieHelper.js"
 
         if(cookieHelper.getCookie("id") == null)
         {
@@ -36,34 +38,29 @@
         });
     </script>
 </head>
-
 <body>
-    <div id="navbar"></div>
-    <div class="container">
-        <h1 class="center" id="chatboxUserTitle">Chat</h1>
-
+  <div id="navbar"></div>
+  <div class="container-fluid">
+    <h1 class="center" id="chatboxUserTitle">Chat</h1>
+    <br>
+    <div class="row center">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="kg">Chat message</label>
+            <input class="form-control" type="text" id="userMessage" placeholder="message...">
+            <br>
+            <button class="btn btn-primary" id="buttonChatMessage">Submit</button>
+            <br>
+            <br>
+            <h3> Chat berichten </h3>
+            <p id="messageList"><br></p>
+          </div>
         </div>
-        <br>
-            <div class="row center">
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label for="kg">chat message test</label>
-                  <input class="form-control" type="text" id="userMessage" placeholder="message...">
-                  <br>
-                  <button class="btn btn-primary" id="buttonChatMessage">Submit</button>
-                  <br>
-                  <br>
-                  <h3> Chat berichten </h3>
-                  <p id="messageList"><br></p>
-              </div>
-            </div>
-            <div class="col-md-1">
-              <select class="btn btn-mini" id="onlineUserList" multiple aria-label="multiple select example">
-                <option selected>Online users:</option>
-
-              </select>
-
-            </div>
+        <div class="col-md-1">
+          <select class="btn btn-mini" id="onlineUserList" multiple aria-label="multiple select example">
+            <option selected>Online users:</option>
+          </select>
+        </div>
     </div>
     <div id="footer"></div>
 </body>
