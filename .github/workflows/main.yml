@@ -14,5 +14,5 @@ jobs:
       - uses: actions/checkout@v1
       - name: Build stack
         run: docker-compose --env-file backend/.env.example up -d
-      - name: Install dependency and run tests
-        run: npm install --save-dev jest && cd frontend && npm install && sudo ufw disable && npm run test
+      - name: Run tests
+        run: docker-compose exec -it frontend npm run test
