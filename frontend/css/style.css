@@ -22,6 +22,7 @@
     text-align: center;
     padding-top: 10px;
     background-color: #005b96 !important;
+    z-index: 99;
 }
 
 .footer-home a {
@@ -32,4 +33,12 @@
 
 .footer-home a:hover {
     color: rgba(0, 0, 0, 0.5);
+}
+
+.widthFix {
+    width: 100% !important;
+}
+
+.kekw {
+    margin-top: 500px !important;
 }
