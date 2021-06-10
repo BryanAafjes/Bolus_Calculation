@@ -9,7 +9,6 @@ const { fileURLToPath } = require("url");
 
 io.on('connection', socket => {
     console.log(socket.id)
-    
 })
 
 var params = {

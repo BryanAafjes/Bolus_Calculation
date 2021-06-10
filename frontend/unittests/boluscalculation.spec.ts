@@ -46,14 +46,14 @@ test('give error when number over 300 is entered in calculate meal intake functi
 });
 
 //Turned off because of github pipeline, that has no active API server and database.
- /* test('sent API request to backend', async () => {
-     expect(await api.sendCalculationToAPI(90, 70)).toBe(true);
- });*/
+ test('sent API request for creating calculation to backend', async () => {
+     expect(await api.sendCalculationToAPI(90, 70, 20, 30, 20, 2)).toBe(true);
+ });
 
  /*test('get calculations from database via get request', async () => {
      expect(await api.getCalculationFromApi()).not.toBeUndefined();
  });*/
 
- test('get gps from database via get request', async () => {
-     expect(await User.getGps()).toBeUndefined();
- });
+//  test('get gps from database via get request', async () => {
+//      expect(await User.getGps()).toBeUndefined();
+//  });
