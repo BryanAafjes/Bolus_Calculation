@@ -15,4 +15,4 @@ jobs:
       - name: Build stack
         run: docker-compose --env-file backend/.env.example up -d
       - name: Run Tests
-        run: cd frontend && npm run test
+        run: npm install --save-dev jest && cd frontend && npm run test
