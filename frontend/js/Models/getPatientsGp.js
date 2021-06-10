@@ -36,15 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { User } from "../../js/Controllers/userController.js";
 import { cookieHelper } from "../../js/Logic/cookieHelper.js";
-if (cookieHelper.getCookie("id") == null) { }
-;
 export function getPatientsList() {
     return __awaiter(this, void 0, void 0, function () {
         var gpId;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!(gpId = cookieHelper.getCookie("id") != null)) return [3 /*break*/, 2];
+                    gpId = cookieHelper.getCookie("id");
+                    if (!(gpId != null)) return [3 /*break*/, 2];
                     return [4 /*yield*/, User.GetPatientsFromGp(gpId)];
                 case 1: return [2 /*return*/, _a.sent()];
                 case 2: return [2 /*return*/];

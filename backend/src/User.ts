@@ -68,7 +68,7 @@ export const SelectUserById = async (Id: number) : Promise <User> => {
 
 export const SelectUsersFromGp = async (gpId: number) : Promise <User[]> => {
   const UserRepo = getRepository(User);
-  const UserData: any =  await UserRepo.find({where: {role: "Patient", gp: gpId}}).catch((err) => {
+  const UserData: any =  await UserRepo.find({where: {role: "Patient", gp: gpId}, relations: ["calculations"]}).catch((err) => {
     console.log(err);
   });
   return UserData;
