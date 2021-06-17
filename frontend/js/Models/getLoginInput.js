@@ -19,6 +19,7 @@ form.onsubmit = function (event) {
             // Set it
             console.log(result.id, result.username);
             cookieHelper.setCookie("id", result.id);
+            cookieHelper.setCookie("role", result.role);
         }
     }).catch(function (_) { return alert("Credentials are not filled in or wrong"); });
 };

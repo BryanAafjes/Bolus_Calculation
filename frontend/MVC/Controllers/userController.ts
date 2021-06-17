@@ -1,4 +1,4 @@
-import {userModel} from '../Models/userModel';
+import {userModel, userWithBolus} from '../Models/userModel';
 import {cookieHelper} from '../Logic/cookieHelper';
 
 export class User {
@@ -58,7 +58,7 @@ export class User {
         }
     }
 
-    static async getGps(): Promise<Array<User>>{
+    static async getGps(): Promise<Array<userModel>>{
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Connection", "keep-alive");
@@ -74,7 +74,7 @@ export class User {
         return data;
     }
 
-    static async GetPatientsFromGp(id: number): Promise<Array<User>>
+    static async GetPatientsFromGp(id: number): Promise<Array<userWithBolus>>
     {
         const json = JSON.stringify({"id":id});
         const myHeaders = new Headers();

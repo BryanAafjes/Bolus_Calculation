@@ -25,10 +25,16 @@
 
           let sessionStorage = window.sessionStorage;
           let data = sessionStorage.getItem('loggedIn');
+          let data2 = sessionStorage.getItem('role');
 
           if(data)
           {
-              alert("You need to be logged in first before submitting a calculation");
+              alert("You need to be logged in first!");
+              sessionStorage.clear();
+          }
+          if(data2)
+          {
+              alert("You need to be a GP to visit this page!");
               sessionStorage.clear();
           }
         }
@@ -36,8 +42,16 @@
 </head>
 <body>
     <div id="navbar"></div>
+    <div class="row widthFix">
+      <div class="col-md-12">
         <h1 class="center">Philips</h1>
-        <img src="../images/philips-logo.png" alt="" width="500" height="600">
+        <p class="center">On this website you can keep track of the insuline doses you injected on a day. 
+                          To get started, create an account on the&nbsp;<a href="/MVC/Views/register.html" style="text-decoration:none;"> register page</a>.</p>
+        <div class="img center">
+          <img src="../images/Philips_logo_new.png" class="center" alt="" style="width:600px;height:auto">
+        </div>
+      </div>
+    </div>
     <div id="footer"></div>
 </body>
 </html>
